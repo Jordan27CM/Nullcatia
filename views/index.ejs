@@ -1,26 +1,35 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<main>
-  <h1>Bienvenido al Reino de NULLCATIA 🐱</h1>
-  <p>Explora los clanes, conoce a los gatos inicializados, descifra los antiguos pergaminos y domina el laberinto de enrutamiento RESTful.</p>
+<main class="container my-5">
+  <div class="card bg-light border-warning shadow-lg" style="background-image: url('https://www.transparenttextures.com/patterns/paper.png'); background-color: #f8f5e4;">
+    <div class="card-body text-center">
+      <h1 class="display-5 fw-bold text-brown" style="font-family: 'Times New Roman', serif;">
+        🐱 Bienvenido al Reino de NULLCATIA
+      </h1>
+      <p class="lead mb-4">Explora los clanes, conoce a los gatos inicializados, descifra los antiguos pergaminos y domina el laberinto de enrutamiento RESTful.</p>
 
-  <section>
-  <h2>Secciones del Reino</h2>
-  <ul>
-    <li><a href="/gatos">🐾 Ver Gatos</a></li>
-    <li><a href="/gatos/nuevo">➕ Agregar Gatito</a></li>
-    <li><a href="/clanes">🛡️ Ver Clanes</a></li>
-    <li><a href="/clanes/nuevo">➕ Crear Clan</a></li>
-    <li><a href="/pergaminos">📜 Ver Pergaminos</a></li>
-    <li><a href="/pergaminos/nuevo">➕ Agregar Pergamino</a></li>
-    <li><a href="/territorios">🌍 Ver Territorios</a></li>
-    <li><a href="/territorios/nuevo">➕ Crear Territorio</a></li>
-    <li><a href="/clanPergamino">🔗 Relacionar Clanes y Pergaminos</a></li>
-    <li><a href="/clanPergamino/nuevo">➕ Nueva Relación Clan–Pergamino</a></li>
-  </ul>
-</section>
+      <h2 class="h4 mb-3">📚 Secciones del Reino</h2>
+      <div class="d-grid gap-2 col-10 col-md-6 mx-auto">
 
+        <a href="/gatos" class="btn btn-outline-secondary">🐾 Ver Gatos</a>
+        <a href="/gatos/nuevo" class="btn btn-outline-secondary">➕ Agregar Gatito</a>
+
+        <a href="/clanes" class="btn btn-outline-secondary">🛡️ Ver Clanes</a>
+        <a href="/clanes/nuevo" class="btn btn-outline-secondary">➕ Crear Clan</a>
+
+        <a href="/pergaminos" class="btn btn-outline-secondary">📜 Ver Pergaminos</a>
+        <a href="/pergaminos/nuevo" class="btn btn-outline-secondary">➕ Agregar Pergamino</a>
+
+        <a href="/territorios" class="btn btn-outline-secondary">🌍 Ver Territorios</a>
+        <a href="/territorios/nuevo" class="btn btn-outline-secondary">➕ Crear Territorio</a>
+
+        <a href="/clanPergamino" class="btn btn-outline-secondary">🔗 Relacionar Clanes y Pergaminos</a>
+        <a href="/clanPergamino/nuevo" class="btn btn-outline-secondary">➕ Nueva Relación Clan–Pergamino</a>
+
+      </div>
+    </div>
+  </div>
 </main>
 
 <%- include('partials/footer') %>

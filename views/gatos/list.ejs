@@ -1,56 +1,79 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>Lista de Gatitos</h1>
+<div class="container my-5" style="max-width: 900px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body">
+      <h1 class="mb-4 text-center display-4 fw-bold" style="color: #d9c978;">
+        Lista de Gatitos 🐱
+      </h1>
 
-<form method="GET" action="/gatos" style="margin-bottom: 20px;">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre" value="<%= filtroNombre || '' %>">
+      <form method="GET" action="/gatos" class="row g-3 mb-4 justify-content-center">
+        <div class="col-md-4">
+          <label for="nombre" class="form-label fw-semibold" style="color: #d9c978;">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" value="<%= filtroNombre || '' %>"
+                 class="form-control bg-secondary text-light" placeholder="Nombre del gatito"
+                 style="border-color: #d9c978;">
+        </div>
 
-  <label for="clan">Clan:</label>
-  <select id="clan" name="clan_id">
-    <option value="">-- Todos --</option>
-    <% clanes.forEach(clan => { %>
-      <option value="<%= clan.clan_id %>" <%= filtroClan == clan.clan_id ? 'selected' : '' %>><%= clan.nombre %></option>
-    <% }) %>
-  </select>
+        <div class="col-md-4">
+          <label for="clan" class="form-label fw-semibold" style="color: #d9c978;">Clan:</label>
+          <select id="clan" name="clan_id" class="form-select bg-secondary text-light" style="border-color: #d9c978;">
+            <option value="" class="text-dark">-- Todos --</option>
+            <% clanes.forEach(clan => { %>
+              <option value="<%= clan.clan_id %>" <%= filtroClan == clan.clan_id ? 'selected' : '' %>>
+                <%= clan.nombre %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
 
-  <button type="submit">🔍 Filtrar</button>
-</form>
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="submit" class="btn btn-outline-light w-100" style="border-color: #d9c978; color: #d9c978;">
+            🔍 Filtrar
+          </button>
+        </div>
+      </form>
 
-<table class="tabla-gatos">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Edad</th>
-      <th>Raza</th>
-      <th>Clan</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% gatos.forEach(cat => { %>
-      <tr>
-        <td><%= cat.nombre %></td>
-        <td>
-          <span class="edad-gato" title="Nacimiento: <%= cat.fechaFormateada %>">
-            <%= cat.edad %>
-          </span>
-        </td>
-        <td><%= cat.raza %></td>
-        <td>
-          <a href="/clanes/<%= cat.clan_id %>" title="Ver clan <%= cat.clan_nombre %>">
-            <%= cat.clan_nombre %>
-          </a>
-        </td>
-        <td class="acciones">
-          <a href="/gatos/<%= cat.gato_id %>/editar" class="boton-editar">✏️ Editar</a>
-          <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="form-eliminar" onsubmit="return confirm('¿Eliminar este gato?');">
-            <button type="submit" class="boton-eliminar">🗑️ Eliminar</button>
-          </form>
-        </td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-light" style="border-color: #d9c978;">
+          <thead style="background-color: #3b3721; color: #d9c978; border-bottom: 2px solid #d9c978;" class="text-center">
+            <tr>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Raza</th>
+              <th>Clan</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% gatos.forEach(cat => { %>
+              <tr style="border-bottom: 1px solid #d9c978;">
+                <td><%= cat.nombre %></td>
+                <td class="text-center" title="Nacimiento: <%= cat.fechaFormateada %>"><%= cat.edad %></td>
+                <td><%= cat.raza %></td>
+                <td>
+                  <a href="/clanes/<%= cat.clan_id %>" title="Ver clan <%= cat.clan_nombre %>" class="text-decoration-none" style="color: #d9c978;">
+                    <%= cat.clan_nombre %>
+                  </a>
+                </td>
+                <td class="text-center">
+                  <a href="/gatos/<%= cat.gato_id %>/editar" class="btn btn-sm btn-outline-warning me-2" title="Editar gatito" style="letter-spacing: 1px;">
+                    ✏️ Editar
+                  </a>
+                  <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que quieres eliminar este gatito?');">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar gatito" style="letter-spacing: 1px;">
+                      🗑️ Eliminar
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%- include('../partials/footer') %>

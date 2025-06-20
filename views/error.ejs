@@ -1,7 +1,22 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<h1>⚠️ Error</h1>
-<p><%= message %></p>
+<div class="container my-5" style="max-width: 700px; font-family: Georgia, serif;">
+  <div class="card text-center" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 12px #d9c978;">
+    <div class="card-body text-light">
+      <h1 class="display-4 mb-4" style="color: #d9c978;">⚠️ El Ojo de Nullcatia ha detectado un obstáculo</h1>
+      <p class="fs-5 fst-italic">
+        <%= message %>
+      </p>
+      <p>
+        En las tierras misteriosas de Nullcatia, incluso las sombras más oscuras se rinden ante la sabiduría ancestral.<br>
+        Vuelve a intentarlo, noble aventurero, o busca consejo en los pergaminos sagrados para continuar tu senda.
+      </p>
+      <a href="/" class="btn btn-outline-warning mt-3" style="letter-spacing: 1px;">
+        🏰 Regresar al Reino
+      </a>
+    </div>
+  </div>
+</div>
 
 <%- include('partials/footer') %>

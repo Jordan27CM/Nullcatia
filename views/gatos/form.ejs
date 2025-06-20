@@ -1,28 +1,57 @@
-<h1>Nuevo Gatito</h1>
-<form action="/gatos" method="POST">
-  <div class="form-group">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" class="form-control" required>
-  </div>
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
 
-  <div class="form-group">
-    <label for="raza">Raza:</label>
-    <input type="text" id="raza" name="raza" class="form-control" required>
-  </div>
+<div class="container my-5" style="max-width: 600px;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body">
+      <h1 class="card-title mb-4 display-5 fw-bold text-center" style="font-family: Georgia, serif; color: #d9c978;">
+        Nuevo Gatito
+      </h1>
 
-  <div class="form-group">
-    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
-  </div>
+      <form action="/gatos" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold" style="color: #d9c978;">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="form-control bg-secondary text-light" style="border-color: #d9c978;" required>
+          <div class="invalid-feedback" style="color: #d9c978;">
+            Por favor ingresa el nombre del gatito.
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label for="clan_id">Clan:</label>
-    <select id="clan_id" name="clan_id" class="form-control" required>
-      <% clanes.forEach(clan => { %>
-        <option value="<%= clan.clan_id %>"><%= clan.nombre %></option>
-      <% }) %>
-    </select>
-  </div>
+        <div class="mb-3">
+          <label for="raza" class="form-label fw-semibold" style="color: #d9c978;">Raza:</label>
+          <input type="text" id="raza" name="raza" class="form-control bg-secondary text-light" style="border-color: #d9c978;" required>
+          <div class="invalid-feedback" style="color: #d9c978;">
+            Por favor ingresa la raza del gatito.
+          </div>
+        </div>
 
-  <button type="submit" class="btn btn-primary">Crear Gatito</button>
-</form>
+        <div class="mb-3">
+          <label for="fecha_nacimiento" class="form-label fw-semibold" style="color: #d9c978;">Fecha de Nacimiento:</label>
+          <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control bg-secondary text-light" style="border-color: #d9c978;" required>
+          <div class="invalid-feedback" style="color: #d9c978;">
+            Por favor selecciona la fecha de nacimiento.
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="clan_id" class="form-label fw-semibold" style="color: #d9c978;">Clan:</label>
+          <select id="clan_id" name="clan_id" class="form-select bg-secondary text-light" style="border-color: #d9c978;" required>
+            <% clanes.forEach(clan => { %>
+              <option value="<%= clan.clan_id %>"><%= clan.nombre %></option>
+            <% }) %>
+          </select>
+          <div class="invalid-feedback" style="color: #d9c978;">
+            Por favor selecciona un clan.
+          </div>
+        </div>
+
+        <button type="submit" class="btn w-100 fw-bold" style="background-color: #d9c978; color: #2e2a1f; letter-spacing: 2px;">
+          Crear Gatito
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<%- include('../partials/footer') %>
