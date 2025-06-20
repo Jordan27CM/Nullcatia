@@ -45,7 +45,7 @@
         </td>
         <td class="acciones">
           <a href="/gatos/<%= cat.gato_id %>/editar" class="boton-editar">✏️ Editar</a>
-          <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="form-eliminar">
+          <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="form-eliminar" onsubmit="return confirm('¿Eliminar este gato?');">
             <button type="submit" class="boton-eliminar">🗑️ Eliminar</button>
           </form>
         </td>

@@ -23,7 +23,6 @@ app.use(errorHandler);
 app.use('/clanPergamino', clanPergamino);
 app.use('/territorios', territoriosRoutes);
 app.use('/pergaminos', pergaminosRoutes);
-
 app.use('/gatos', catsRoutes);
 app.use('/clanes', clansRoutes);
 // Rutas base

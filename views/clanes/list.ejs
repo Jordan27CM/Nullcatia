@@ -19,7 +19,7 @@
         <td>
           <a href="/clanes/<%= clan.clan_id %>">🔍 Ver</a> |
           <a href="/clanes/<%= clan.clan_id %>/editar">✏️ Editar</a>
-          <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST" style="display:inline;">
+          <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar este clan?');">
             <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
           </form>
         </td>
