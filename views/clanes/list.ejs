@@ -17,8 +17,9 @@
         <td><%= clan.nombre %></td>
         <td><%= clan.territorio %></td>
         <td>
+          <a href="/clanes/<%= clan.clan_id %>">🔍 Ver</a> |
           <a href="/clanes/<%= clan.clan_id %>/editar">✏️ Editar</a>
-          <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST">
+          <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST" style="display:inline;">
             <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
           </form>
         </td>
@@ -26,5 +27,6 @@
     <% }) %>
   </tbody>
 </table>
+
 
 <%- include('../partials/footer') %>

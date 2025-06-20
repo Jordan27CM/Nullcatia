@@ -19,6 +19,15 @@ module.exports = {
     ORDER BY c.nombre, p.titulo
   `);
   return rows;
+},findPergaminosByClan: async (clan_id) => {
+  const [rows] = await pool.query(`
+    SELECT p.titulo
+    FROM clan_pergamino cp
+    JOIN pergaminos p ON cp.pergamino_id = p.pergamino_id
+    WHERE cp.clan_id = ?
+  `, [clan_id]);
+  return rows;
 }
+
 
 };

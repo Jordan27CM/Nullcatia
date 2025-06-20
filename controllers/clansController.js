@@ -1,6 +1,7 @@
 const clanModel = require('../models/clanModel');
 const catModel = require('../models/catModel');
 const territorioModel = require('../models/territorioModel');
+const clanPergaminoModel = require('../models/clanPergaminoModel');
 
 module.exports = {
   list: async (req, res, next) => {
@@ -67,5 +68,21 @@ module.exports = {
   // ✅ Acción para mostrar la vista de error
   error: (req, res) => {
     res.render('clanes/error'); // Asegúrate de tener views/clanes/error.ejs
+  },
+  show: async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const clan = await clanModel.findById(id);
+    const gatos = await catModel.findByClan(id);
+    const pergaminos = await clanPergaminoModel.findPergaminosByClan(id);
+
+    if (!clan) {
+      return res.status(404).render('error', { message: 'Clan no encontrado.' });
+    }
+
+    res.render('clanes/detail', { clan, gatos, pergaminos });
+  } catch (err) {
+    next(err);
   }
+}
 };

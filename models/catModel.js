@@ -65,6 +65,14 @@ findWithFilters: async (nombre, clan_id) => {
 
   const [rows] = await pool.query(query, params);
   return rows;
+},
+findByClan: async (clan_id) => {
+  const [rows] = await pool.query(`
+    SELECT *, TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
+    FROM gatos
+    WHERE clan_id = ?
+  `, [clan_id]);
+  return rows;
 }
   
 };

@@ -9,6 +9,7 @@ router.get('/:id/editar', clansController.editForm);
 router.put('/:id', clansController.update);
 router.delete('/:id', clansController.remove);
 router.get('/error', clansController.error);
+router.get('/:id', clansController.show);
 
 
 

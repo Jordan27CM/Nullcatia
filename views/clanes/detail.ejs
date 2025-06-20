@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>🛡️ Clan <%= clan.nombre %></h1>
+
+<p><strong>Territorio:</strong> <%= clan.territorio %></p>
+
+<% if (clan.descripcion) { %>
+  <p><strong>Descripción:</strong> <%= clan.descripcion %></p>
+<% } %>
+
+<hr>
+
+<h2>🐾 Miembros del Clan</h2>
+<% if (gatos.length === 0) { %>
+  <p>Este clan aún no tiene gatitos registrados.</p>
+<% } else { %>
+  <ul>
+    <% gatos.forEach(gato => { %>
+      <li>
+        <strong><%= gato.nombre %></strong> (<%= gato.raza %>, 
+        <%= gato.edad %> años)
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<hr>
+
+<h2>📜 Pergaminos Asociados</h2>
+<% if (pergaminos.length === 0) { %>
+  <p>No hay pergaminos asociados a este clan.</p>
+<% } else { %>
+  <ul>
+    <% pergaminos.forEach(p => { %>
+      <li><%= p.titulo %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<a href="/clanes">🔙 Volver a la lista de clanes</a>
+
+<%- include('../partials/footer') %>
