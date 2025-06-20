@@ -1,21 +1,3 @@
--- database/schema.sql
-
-CREATE TABLE clans (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE cats (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
-    clan_id INT,
-    FOREIGN KEY (clan_id) REFERENCES clans(id) ON DELETE RESTRICT
-);
-
-CREATE INDEX idx_cat_name ON cats(name);
------------------------------------------------------------------------------------
-
 CREATE DATABASE nullcatia;
 USE nullcatia;
 

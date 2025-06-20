@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>🌍 Agregar Nuevo Territorio</h1>
+
+<form action="/territorios" method="POST" class="formulario">
+  <label for="nombre">Nombre del Territorio:</label><br>
+  <input type="text" id="nombre" name="nombre" required><br><br>
+
+  <label for="descripcion">Descripción:</label><br>
+  <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Descripción opcional..."></textarea><br><br>
+
+  <button type="submit">✅ Crear Territorio</button>
+</form>
+
+<a href="/territorios">🔙 Volver a la lista de territorios</a>
+
+<%- include('../partials/footer') %>
