@@ -1,0 +1,19 @@
+<h1>Nuevo Clan</h1>
+<form action="/clanes" method="POST">
+  <label>Nombre del Clan:</label>
+  <input type="text" name="nombre" required>
+  
+  <label>Territorio:</label>
+  <select name="territorio_id" required>
+    <% territorios.forEach(territorio => { %>
+      <option value="<%= territorio.territorio_id %>">
+        <%= territorio.nombre %>
+      </option>
+    <% }) %>
+  </select>
+  
+  <label>Descripción (Opcional):</label>
+  <textarea name="descripcion"></textarea>
+  
+  <button type="submit">Crear Clan</button>
+</form>

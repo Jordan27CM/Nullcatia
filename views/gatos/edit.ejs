@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>Editar Gatito</h1>
+<form action="/gatos/<%= gato.gato_id %>?_method=PUT" method="POST">
+  <label>Nombre:</label>
+  <input type="text" name="nombre" value="<%= gato.nombre %>" required>
+
+  <label>Raza:</label>
+  <input type="text" name="raza" value="<%= gato.raza %>" required>
+
+  <label>Fecha de Nacimiento:</label>
+  <input type="date" name="fecha_nacimiento" value="<%= gato.fechaFormateada %>" required>
+
+  <label>Clan:</label>
+  <select name="clan_id" required>
+    <% clanes.forEach(clan => { %>
+      <option value="<%= clan.clan_id %>" <%= clan.clan_id === gato.clan_id ? 'selected' : '' %>>
+        <%= clan.nombre %>
+      </option>
+    <% }) %>
+  </select>
+
+  <button type="submit">Actualizar</button>
+</form>
+<%- include('../partials/footer') %>

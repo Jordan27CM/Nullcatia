@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>📚 Pergaminos por Clan</h1>
+<a href="/clanPergamino/nuevo">➕ Relacionar nuevo pergamino con clan</a>
+
+<% let ultimoClan = null; %>
+
+<% relaciones.forEach((r, i) => { %>
+  <% if (r.clan !== ultimoClan) { %>
+    <% if (i !== 0) { %></ul><hr><% } %>
+    <h2>🛡️ <%= r.clan %></h2>
+    <ul>
+    <% ultimoClan = r.clan; %>
+  <% } %>
+
+  <li>
+    <strong><%= r.pergamino %></strong> – 
+    <small><%= new Date(r.agregado_en).toLocaleDateString() %></small>
+    <form action="/clanPergamino/<%= r.id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar esta relación?');">
+      <button type="submit">❌ Quitar</button>
+    </form>
+  </li>
+<% }) %>
+
+</ul>
+
+<%- include('../partials/footer') %>

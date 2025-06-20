@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>Lista de Clanes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Territorio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clanes.forEach(clan => { %>
+      <tr>
+        <td><%= clan.nombre %></td>
+        <td><%= clan.territorio %></td>
+        <td>
+          <a href="/clanes/<%= clan.clan_id %>/editar">✏️ Editar</a>
+          <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

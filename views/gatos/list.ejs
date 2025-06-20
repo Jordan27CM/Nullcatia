@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>Lista de Gatitos</h1>
+
+<form method="GET" action="/gatos" style="margin-bottom: 20px;">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" value="<%= filtroNombre || '' %>">
+
+  <label for="clan">Clan:</label>
+  <select id="clan" name="clan_id">
+    <option value="">-- Todos --</option>
+    <% clanes.forEach(clan => { %>
+      <option value="<%= clan.clan_id %>" <%= filtroClan == clan.clan_id ? 'selected' : '' %>><%= clan.nombre %></option>
+    <% }) %>
+  </select>
+
+  <button type="submit">🔍 Filtrar</button>
+</form>
+
+<table class="tabla-gatos">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Raza</th>
+      <th>Clan</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% gatos.forEach(cat => { %>
+      <tr>
+        <td><%= cat.nombre %></td>
+        <td>
+          <span class="edad-gato" title="Nacimiento: <%= cat.fechaFormateada %>">
+            <%= cat.edad %>
+          </span>
+        </td>
+        <td><%= cat.raza %></td>
+        <td>
+          <a href="/clanes/<%= cat.clan_id %>" title="Ver clan <%= cat.clan_nombre %>">
+            <%= cat.clan_nombre %>
+          </a>
+        </td>
+        <td class="acciones">
+          <a href="/gatos/<%= cat.gato_id %>/editar" class="boton-editar">✏️ Editar</a>
+          <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="form-eliminar">
+            <button type="submit" class="boton-eliminar">🗑️ Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/footer') %>

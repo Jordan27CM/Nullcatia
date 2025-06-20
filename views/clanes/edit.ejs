@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>Editar Clan</h1>
+
+
+<form action="/clanes/<%= clan.clan_id %>?_method=PUT" method="POST">
+  <div class="form-group">
+    <label for="nombre">Nombre del Clan:</label>
+    <input type="text" id="nombre" name="nombre" value="<%= clan.nombre %>" required class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="territorio_id">Territorio:</label>
+    <select id="territorio_id" name="territorio_id" required class="form-control">
+      <% territorios.forEach(territorio => { %>
+        <option value="<%= territorio.territorio_id %>" 
+                <%= territorio.territorio_id === clan.territorio_id ? 'selected' : '' %>>
+          <%= territorio.nombre %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" class="form-control"><%= clan.descripcion || '' %></textarea>
+  </div>
+
+  <button type="submit" class="btn-submit">Actualizar Clan</button>
+  <a href="/clanes" class="btn-cancel">Cancelar</a>
+</form>
+
+<%- include('../partials/footer') %>
+
+<style>
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    background-color: #f44336;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 1rem;
+  }
+
+  .alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  }
+</style>

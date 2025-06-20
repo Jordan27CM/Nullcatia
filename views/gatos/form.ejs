@@ -1,0 +1,28 @@
+<h1>Nuevo Gatito</h1>
+<form action="/gatos" method="POST">
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="raza">Raza:</label>
+    <input type="text" id="raza" name="raza" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="clan_id">Clan:</label>
+    <select id="clan_id" name="clan_id" class="form-control" required>
+      <% clanes.forEach(clan => { %>
+        <option value="<%= clan.clan_id %>"><%= clan.nombre %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Crear Gatito</button>
+</form>

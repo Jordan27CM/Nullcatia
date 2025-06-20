@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>🔗 Asociar Pergamino con Clan</h1>
+
+<form action="/clanPergamino" method="POST">
+  <label for="clan_id">🛡️ Selecciona un Clan:</label><br>
+  <select name="clan_id" id="clan_id" required>
+    <option value="">-- Elige un clan --</option>
+    <% clanes.forEach(c => { %>
+      <option value="<%= c.clan_id %>"><%= c.nombre %></option>
+    <% }) %>
+  </select>
+
+  <br><br>
+
+  <label for="pergamino_id">📜 Selecciona un Pergamino:</label><br>
+  <select name="pergamino_id" id="pergamino_id" required>
+    <option value="">-- Elige un pergamino --</option>
+    <% pergaminos.forEach(p => { %>
+      <option value="<%= p.pergamino_id %>"><%= p.titulo %></option>
+    <% }) %>
+  </select>
+
+  <br><br>
+  <button type="submit">✅ Asociar</button>
+</form>
+
+<%- include('../partials/footer') %>

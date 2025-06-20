@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>🌍 Lista de Territorios</h1>
+
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% territorios.forEach(t => { %>
+      <tr>
+        <td><%= t.nombre %></td>
+        <td><%= t.descripcion %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

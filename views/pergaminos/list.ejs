@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>📜 Lista de Pergaminos</h1>
+
+<a href="/pergaminos/nuevo">➕ Crear nuevo pergamino</a>
+
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Contenido</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pergaminos.forEach(p => { %>
+      <tr>
+        <td><%= p.titulo %></td>
+        <td><%= p.contenido.length > 100 ? p.contenido.slice(0, 100) + '...' : p.contenido %></td>
+        <td>
+          <form action="/pergaminos/<%= p.pergamino_id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Eliminar este pergamino?');">
+            <button type="submit">🗑️ Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
