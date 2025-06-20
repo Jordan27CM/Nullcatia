@@ -16,8 +16,8 @@ Antes de comenzar, asegúrate de tener instalado:
 
 - Node.js (v16 o superior)
 - MySQL Server
-- Git (opcional, pero recomendado)
-- Visual Studio Code o cualquier editor de texto
+- Git
+- Visual Studio Code
 
 ---
 
@@ -26,13 +26,9 @@ Antes de comenzar, asegúrate de tener instalado:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/TuUsuario/nullcatia.git
-cd nullcatia
+git clone https://github.com/Jordan27CM/Nullcatia.git
+cd Nullcatia
 ```
-
-
-💡 Si no estás usando Git, descarga el .zip del proyecto y extrae su contenido.
-
 ### 2. Instalar las dependencias de Node.js
 
 npm install
@@ -68,55 +64,29 @@ DB_PORT=3306
 Desde tu cliente de MySQL o herramienta como Workbench:
 
 **Crea la base de datos:**
-
-CREATE DATABASE nullcatia_db;
-Luego ejecuta el script schema.sql para crear todas las tablas:
-
-USE nullcatia_db;
--- Copia y pega el contenido de schema.sql aquí
-
-💡 Puedes usar también un archivo seed.sql opcional para insertar datos de ejemplo.
+usa el scrip que se encuentra en schema.sql para crear la base de datos y usa los registros de seeds.sql para agregar a las tablas como datos de ejemplo
 
 ### 5. Iniciar el servidor de desarrollo
 
 npm run dev
 
-Esto ejecutará tu app con nodemon y la dejará corriendo en:
-
-http://localhost:3000
-
 **🗂️ Estructura del Proyecto**
-
-nullcatia/
-├── config/           # Configuración de conexión a MySQL
-├── controllers/      # Lógica para manejar rutas
-├── models/           # Operaciones de base de datos
-├── routes/           # Enrutadores por recurso
-├── views/
-│   ├── partials/     # header.ejs, footer.ejs, nav.ejs
-│   └── gatos/        # list.ejs, form.ejs
-├── public/           # Archivos estáticos (CSS, imágenes)
-├── .env.example
-├── schema.sql
-├── README.md
-└── app.js
+![image](https://github.com/user-attachments/assets/d460b72b-c100-4802-b78a-a2bc29502be3)
 
 **✨ Funcionalidades clave**
 
 Módulo	Funcionalidades
 Gatitos	Crear, editar, eliminar y listar gatos
-Clanes	Crear clanes, listarlos y asignar gatos
-Territorios	Crear territorios asociados a clanes
-Pergaminos	Asignar múltiples scrolls a un clan, listar sabiduría
-Filtros	Buscar gatos por clan, edad o nombre
+Clanes	Crear clanes, editar, eliminar y listarlos
+Territorios	Crear territorios, editar territorios y listar los territorios
+Pergaminos	Asignar múltiples pergaminos a un clan y listar los pergaminos
+Filtros	Buscar gatos por clan o nombre
 
 **🧪 Validaciones y Seguridad**
 
 Inputs validados con express-validator
 
 Uso de middleware de errores global
-
-Sanitización de datos
 
 .env protegido (no se sube a Git)
 
@@ -134,19 +104,6 @@ http://localhost:3000/api-docs
 
 **📹 Video demostrativo**
 
-**🎥 Ver demostración de NULLCATIA**
-Incluye:
-
-Intro narrativa
-
-Crear un nuevo gato
-
-Crear un nuevo clan y territorio
-
-Asignación de clan
-
-Consulta filtrada de gatos
-
 **🔐 Buenas prácticas**
 
 .env.example compartido, no credenciales reales
@@ -160,3 +117,6 @@ Modularización de controladores y rutas
 Compatible con estructura MVC
 
 **👥 Autores**
+Jordan Murillo
+Anibal Tapia
+Adrian Ramirez
