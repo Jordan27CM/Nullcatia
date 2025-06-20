@@ -1,7 +1,6 @@
 const catModel = require('../models/catModel');
 const clanModel = require('../models/clanModel');
 
-// Función auxiliar para calcular la edad en formato legible
 function calcularEdad(fechaNacimiento) {
   if (!fechaNacimiento) return 'Edad desconocida';
   
