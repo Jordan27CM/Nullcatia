@@ -1,23 +1,33 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>🌍 Lista de Territorios</h1>
+<div class="container my-5" style="font-family: Georgia, serif; max-width: 900px;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body text-light">
 
-<table border="1" cellpadding="10">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% territorios.forEach(t => { %>
-      <tr>
-        <td><%= t.nombre %></td>
-        <td><%= t.descripcion %></td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
+      <h1 class="display-5 mb-4 text-center" style="color: #d9c978;">🌍 Lista de Territorios</h1>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-light" style="border-color: #d9c978;">
+          <thead class="text-center" style="background-color: #3b3721; color: #d9c978;">
+            <tr>
+              <th style="width: 30%;">Nombre</th>
+              <th style="width: 70%;">Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% territorios.forEach(t => { %>
+              <tr style="border-bottom: 1px solid #d9c978;">
+                <td><%= t.nombre %></td>
+                <td><%= t.descripcion %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

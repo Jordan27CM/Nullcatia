@@ -1,19 +1,43 @@
-<h1>Nuevo Clan</h1>
-<form action="/clanes" method="POST">
-  <label>Nombre del Clan:</label>
-  <input type="text" name="nombre" required>
-  
-  <label>Territorio:</label>
-  <select name="territorio_id" required>
-    <% territorios.forEach(territorio => { %>
-      <option value="<%= territorio.territorio_id %>">
-        <%= territorio.nombre %>
-      </option>
-    <% }) %>
-  </select>
-  
-  <label>Descripción (Opcional):</label>
-  <textarea name="descripcion"></textarea>
-  
-  <button type="submit">Crear Clan</button>
-</form>
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<div class="container my-5" style="max-width: 600px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body">
+      <h1 class="card-title mb-4 display-5 fw-bold text-center" style="color: #d9c978;">
+        Nuevo Clan
+      </h1>
+
+      <form action="/clanes" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold" style="color: #d9c978;">Nombre del Clan:</label>
+          <input type="text" id="nombre" name="nombre" required
+                 class="form-control bg-secondary text-light" style="border-color: #d9c978;">
+        </div>
+
+        <div class="mb-3">
+          <label for="territorio_id" class="form-label fw-semibold" style="color: #d9c978;">Territorio:</label>
+          <select id="territorio_id" name="territorio_id" required
+                  class="form-select bg-secondary text-light" style="border-color: #d9c978;">
+            <% territorios.forEach(territorio => { %>
+              <option value="<%= territorio.territorio_id %>"><%= territorio.nombre %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="descripcion" class="form-label fw-semibold" style="color: #d9c978;">Descripción (Opcional):</label>
+          <textarea id="descripcion" name="descripcion" rows="3"
+                    class="form-control bg-secondary text-light" style="border-color: #d9c978;"></textarea>
+        </div>
+
+        <button type="submit" class="btn w-100 fw-bold"
+                style="background-color: #d9c978; color: #2e2a1f; letter-spacing: 2px;">
+          Crear Clan
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

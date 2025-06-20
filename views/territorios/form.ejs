@@ -1,18 +1,42 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>🌍 Agregar Nuevo Territorio</h1>
+<div class="container my-5" style="max-width: 700px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body text-light">
 
-<form action="/territorios" method="POST" class="formulario">
-  <label for="nombre">Nombre del Territorio:</label><br>
-  <input type="text" id="nombre" name="nombre" required><br><br>
+      <h1 class="card-title mb-4 display-5 text-center" style="color: #d9c978;">
+        🌍 Agregar Nuevo Territorio
+      </h1>
 
-  <label for="descripcion">Descripción:</label><br>
-  <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Descripción opcional..."></textarea><br><br>
+      <form action="/territorios" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold" style="color: #d9c978;">Nombre del Territorio:</label>
+          <input type="text" id="nombre" name="nombre" required
+                 class="form-control bg-secondary text-light" style="border-color: #d9c978;">
+        </div>
 
-  <button type="submit">✅ Crear Territorio</button>
-</form>
+        <div class="mb-4">
+          <label for="descripcion" class="form-label fw-semibold" style="color: #d9c978;">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="4"
+                    class="form-control bg-secondary text-light" style="border-color: #d9c978;"
+                    placeholder="Descripción opcional..."></textarea>
+        </div>
 
-<a href="/territorios">🔙 Volver a la lista de territorios</a>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn fw-bold"
+                  style="background-color: #d9c978; color: #2e2a1f; letter-spacing: 1px;">
+            ✅ Crear Territorio
+          </button>
+          <a href="/territorios" class="btn btn-outline-light"
+             style="border-color: #d9c978; color: #d9c978; letter-spacing: 1px;">
+            🔙 Volver
+          </a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

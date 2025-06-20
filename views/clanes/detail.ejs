@@ -1,43 +1,54 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>🛡️ Clan <%= clan.nombre %></h1>
+<div class="container my-5" style="max-width: 700px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body text-light">
+      <h1 class="card-title display-5 text-center mb-4" style="color: #d9c978;">
+        🛡️ <%= clan.nombre %>
+      </h1>
 
-<p><strong>Territorio:</strong> <%= clan.territorio %></p>
+      <p class="fs-5"><strong style="color: #d9c978;">Territorio:</strong> <%= clan.territorio %></p>
 
-<% if (clan.descripcion) { %>
-  <p><strong>Descripción:</strong> <%= clan.descripcion %></p>
-<% } %>
+      <% if (clan.descripcion) { %>
+        <p class="fs-5"><strong style="color: #d9c978;">Descripción:</strong> <%= clan.descripcion %></p>
+      <% } %>
 
-<hr>
+      <hr class="border-light border-2 opacity-50 my-4">
 
-<h2>🐾 Miembros del Clan</h2>
-<% if (gatos.length === 0) { %>
-  <p>Este clan aún no tiene gatitos registrados.</p>
-<% } else { %>
-  <ul>
-    <% gatos.forEach(gato => { %>
-      <li>
-        <strong><%= gato.nombre %></strong> (<%= gato.raza %>, 
-        <%= gato.edad %> años)
-      </li>
-    <% }) %>
-  </ul>
-<% } %>
+      <h2 class="mb-3" style="color: #d9c978;">🐾 Miembros del Clan</h2>
+      <% if (gatos.length === 0) { %>
+        <p class="fst-italic">Este clan aún no tiene gatitos registrados.</p>
+      <% } else { %>
+        <ul class="list-group list-group-flush mb-4">
+          <% gatos.forEach(gato => { %>
+            <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+              <strong><%= gato.nombre %></strong> — <%= gato.raza %>, <%= gato.edad %> años
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
 
-<hr>
+      <h2 class="mb-3" style="color: #d9c978;">📜 Pergaminos Asociados</h2>
+      <% if (pergaminos.length === 0) { %>
+        <p class="fst-italic">No hay pergaminos asociados a este clan.</p>
+      <% } else { %>
+        <ul class="list-group list-group-flush">
+          <% pergaminos.forEach(p => { %>
+            <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+              <%= p.titulo %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
 
-<h2>📜 Pergaminos Asociados</h2>
-<% if (pergaminos.length === 0) { %>
-  <p>No hay pergaminos asociados a este clan.</p>
-<% } else { %>
-  <ul>
-    <% pergaminos.forEach(p => { %>
-      <li><%= p.titulo %></li>
-    <% }) %>
-  </ul>
-<% } %>
-
-<a href="/clanes">🔙 Volver a la lista de clanes</a>
+      <div class="text-center mt-4">
+        <a href="/clanes" class="btn btn-outline-warning" style="letter-spacing: 1px;">
+          🔙 Volver a la lista de clanes
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

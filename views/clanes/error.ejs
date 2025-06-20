@@ -1,7 +1,26 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
-<h1>❌ No se puede eliminar el clan</h1>
-<p>Este clan tiene gatos asociados. Primero elimina los gatos antes de borrar el clan.</p>
 
-<a href="/clanes">Volver a la lista de clanes</a>
+<div class="container my-5" style="max-width: 700px; font-family: Georgia, serif;">
+  <div class="card text-light" style="background-color: #2e2a1f; border: 3px solid #d9c978;">
+    <div class="card-body">
+      <h1 class="card-title mb-4 display-5 text-danger text-center">❌ No se puede eliminar el clan</h1>
+
+      <p class="fs-5" style="color: #d9c978;">
+        El Consejo de Maullidos Eternos ha prohibido disolver este clan, pues aún habitan en él valientes gatitos
+        que protegen sus pergaminos y territorios sagrados.
+      </p>
+
+      <p class="fs-5" style="color: #d9c978;">
+        Para que el clan sea disuelto según las leyes ancestrales de Nullcatia, primero debes guiar a todos sus gatos
+        hacia nuevos destinos... o despedirlos con honor.
+      </p>
+
+      <div class="text-center mt-4">
+        <a href="/clanes" class="btn btn-outline-warning" style="letter-spacing: 1px;">⬅️ Volver a la lista de clanes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%- include('../partials/footer') %>

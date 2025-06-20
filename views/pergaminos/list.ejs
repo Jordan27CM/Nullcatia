@@ -1,31 +1,48 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>📜 Lista de Pergaminos</h1>
+<div class="container my-5" style="font-family: Georgia, serif; max-width: 900px;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body text-light">
 
-<a href="/pergaminos/nuevo">➕ Crear nuevo pergamino</a>
+      <h1 class="display-5 mb-4 text-center" style="color: #d9c978;">📜 Lista de Pergaminos</h1>
 
-<table border="1" cellpadding="10">
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Contenido</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% pergaminos.forEach(p => { %>
-      <tr>
-        <td><%= p.titulo %></td>
-        <td><%= p.contenido.length > 100 ? p.contenido.slice(0, 100) + '...' : p.contenido %></td>
-        <td>
-          <form action="/pergaminos/<%= p.pergamino_id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Eliminar este pergamino?');">
-            <button type="submit">🗑️ Eliminar</button>
-          </form>
-        </td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
+      <div class="mb-4 text-end">
+        <a href="/pergaminos/nuevo" class="btn btn-outline-warning fw-bold" style="letter-spacing: 1px;">
+          ➕ Crear nuevo pergamino
+        </a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-light" style="border-color: #d9c978;">
+          <thead style="background-color: #3b3721; color: #d9c978;" class="text-center">
+            <tr>
+              <th style="width: 25%;">Título</th>
+              <th style="width: 55%;">Contenido</th>
+              <th style="width: 20%;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pergaminos.forEach(p => { %>
+              <tr style="border-bottom: 1px solid #d9c978;">
+                <td><%= p.titulo %></td>
+                <td><%= p.contenido.length > 100 ? p.contenido.slice(0, 100) + '...' : p.contenido %></td>
+                <td class="text-center">
+                  <form action="/pergaminos/<%= p.pergamino_id %>?_method=DELETE" method="POST"
+                        onsubmit="return confirm('¿Eliminar este pergamino?');" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar pergamino">
+                      🗑️ Eliminar
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

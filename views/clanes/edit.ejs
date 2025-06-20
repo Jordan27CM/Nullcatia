@@ -1,76 +1,50 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>Editar Clan</h1>
+<div class="container my-5" style="max-width: 600px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 10px #d9c978;">
+    <div class="card-body">
+      <h1 class="card-title mb-4 display-5 fw-bold text-center" style="color: #d9c978;">
+        Editar Clan
+      </h1>
 
+      <form action="/clanes/<%= clan.clan_id %>?_method=PUT" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold" style="color: #d9c978;">Nombre del Clan:</label>
+          <input type="text" id="nombre" name="nombre" value="<%= clan.nombre %>" required
+                 class="form-control bg-secondary text-light" style="border-color: #d9c978;">
+        </div>
 
-<form action="/clanes/<%= clan.clan_id %>?_method=PUT" method="POST">
-  <div class="form-group">
-    <label for="nombre">Nombre del Clan:</label>
-    <input type="text" id="nombre" name="nombre" value="<%= clan.nombre %>" required class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="territorio_id">Territorio:</label>
-    <select id="territorio_id" name="territorio_id" required class="form-control">
-      <% territorios.forEach(territorio => { %>
-        <option value="<%= territorio.territorio_id %>" 
+        <div class="mb-3">
+          <label for="territorio_id" class="form-label fw-semibold" style="color: #d9c978;">Territorio:</label>
+          <select id="territorio_id" name="territorio_id" required
+                  class="form-select bg-secondary text-light" style="border-color: #d9c978;">
+            <% territorios.forEach(territorio => { %>
+              <option value="<%= territorio.territorio_id %>" 
                 <%= territorio.territorio_id === clan.territorio_id ? 'selected' : '' %>>
-          <%= territorio.nombre %>
-        </option>
-      <% }) %>
-    </select>
-  </div>
+                <%= territorio.nombre %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
 
-  <div class="form-group">
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" name="descripcion" class="form-control"><%= clan.descripcion || '' %></textarea>
-  </div>
+        <div class="mb-4">
+          <label for="descripcion" class="form-label fw-semibold" style="color: #d9c978;">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" rows="3"
+                    class="form-control bg-secondary text-light" style="border-color: #d9c978;"><%= clan.descripcion || '' %></textarea>
+        </div>
 
-  <button type="submit" class="btn-submit">Actualizar Clan</button>
-  <a href="/clanes" class="btn-cancel">Cancelar</a>
-</form>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn fw-bold" style="background-color: #d9c978; color: #2e2a1f; letter-spacing: 1px;">
+            Actualizar Clan
+          </button>
+          <a href="/clanes" class="btn btn-outline-light" style="border-color: #d9c978; color: #d9c978; letter-spacing: 1px;">
+            Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>
-
-<style>
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-control {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  .btn-submit {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .btn-cancel {
-    background-color: #f44336;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    margin-left: 1rem;
-  }
-
-  .alert-error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-  }
-</style>
