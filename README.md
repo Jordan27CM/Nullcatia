@@ -72,7 +72,8 @@ npm run dev
 
 **🗂️ Estructura del Proyecto**
 
-![image](https://github.com/user-attachments/assets/d460b72b-c100-4802-b78a-a2bc29502be3)
+![image](https://github.com/user-attachments/assets/5724ea8e-fbd5-447d-a3fc-7200b0e11732)
+
 
 **✨ Funcionalidades clave**
 
