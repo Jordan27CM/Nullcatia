@@ -11,6 +11,8 @@ const territoriosRoutes = require('./routes/territorios');
 const clanPergamino = require('./routes/clanPergamino');
 
 const errorHandler = require('./middlewares/errorHandler');
+const { swaggerUi, specs } = require('./swagger');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

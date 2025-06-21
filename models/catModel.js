@@ -73,6 +73,16 @@ findByClan: async (clan_id) => {
     WHERE clan_id = ?
   `, [clan_id]);
   return rows;
+},
+findByIdWithClan: async (id) => {
+  const [rows] = await pool.query(`
+    SELECT g.*, c.nombre AS clan_nombre
+    FROM gatos g
+    JOIN clanes c ON g.clan_id = c.clan_id
+    WHERE g.gato_id = ?
+  `, [id]);
+
+  return rows[0];
 }
-  
+
 };

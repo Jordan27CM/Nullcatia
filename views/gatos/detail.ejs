@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<h1>🐾 Detalles de <%= gato.nombre %></h1>
+
+<ul>
+  <li><strong>Raza:</strong> <%= gato.raza %></li>
+  <li><strong>Edad:</strong> <%= gato.edad %> años</li>
+  <li><strong>Fecha de Nacimiento:</strong> 
+    <%= gato.fecha_nacimiento 
+      ? new Date(gato.fecha_nacimiento).toLocaleDateString('es-ES') 
+      : 'Desconocida' %>
+  </li>
+  <li><strong>Clan:</strong> 
+    <a href="/clanes/<%= gato.clan_id %>"><%= gato.clan_nombre %></a>
+  </li>
+</ul>
+
+<a href="/gatos">🔙 Volver a la lista</a> |
+<a href="/gatos/<%= gato.gato_id %>/editar">✏️ Editar</a>
+
+<%- include('../partials/footer') %>

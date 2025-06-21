@@ -13,8 +13,8 @@ module.exports = {
     return rows[0];
   },
   create: async (data) => {
-    const { titulo, contenido, autor_gato_id } = data;
-    await pool.query('INSERT INTO pergaminos (titulo, contenido, autor_gato_id) VALUES (?, ?, ?)', [titulo, contenido, autor_gato_id]);
+    const { titulo, contenido } = data;
+    await pool.query('INSERT INTO pergaminos (titulo, contenido) VALUES (?, ?)', [titulo, contenido]);
   },
   delete: async (id) => {
     await pool.query('DELETE FROM pergaminos WHERE pergamino_id = ?', [id]);

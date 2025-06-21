@@ -145,5 +145,36 @@ module.exports = {
     } catch (err) {
       next(err);
     }
+  },
+  detail: async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const gato = await catModel.findByIdWithClan(id);
+
+    if (!gato) {
+      return res.status(404).render('error', { message: 'Gato no encontrado' });
+    }
+
+    // Calcular edad
+    const nacimiento = new Date(gato.fecha_nacimiento);
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    if (
+      hoy.getMonth() < nacimiento.getMonth() ||
+      (hoy.getMonth() === nacimiento.getMonth() && hoy.getDate() < nacimiento.getDate())
+    ) {
+      edad--;
+    }
+
+    res.render('gatos/detail', {
+      gato: {
+        ...gato,
+        edad
+      }
+    });
+  } catch (err) {
+    next(err);
   }
+}
+
 };
