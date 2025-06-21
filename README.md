@@ -120,6 +120,7 @@ Modularización de controladores y rutas
 Compatible con estructura MVC
 
 **👥 Autores**
+
 Jordan Murillo
 
 Anibal Tapia
