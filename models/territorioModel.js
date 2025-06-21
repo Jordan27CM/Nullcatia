@@ -6,10 +6,10 @@ module.exports = {
     return rows;
   },
   create: async ({ nombre, descripcion }) => {
-  await pool.query(
-    'INSERT INTO territorios (nombre, descripcion) VALUES (?, ?)',
-    [nombre, descripcion]
-  );
-}
+    await pool.query(
+      'INSERT INTO territorios (nombre, descripcion) VALUES (?, ?)',
+      [nombre, descripcion]
+    );
+  }
 
 };

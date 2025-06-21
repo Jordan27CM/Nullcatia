@@ -55,7 +55,7 @@ module.exports = {
       const gatosEnClan = await catModel.countByClan(req.params.id);
 
       if (gatosEnClan > 0) {
-        return res.redirect('/clanes/error'); // ✅ Ruta corregida
+        return res.redirect('/clanes/error');
       } else {
         await clanModel.delete(req.params.id);
         res.redirect('/clanes');
@@ -65,24 +65,23 @@ module.exports = {
     }
   },
 
-  // ✅ Acción para mostrar la vista de error
   error: (req, res) => {
-    res.render('clanes/error'); // Asegúrate de tener views/clanes/error.ejs
+    res.render('clanes/error');
   },
   show: async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const clan = await clanModel.findById(id);
-    const gatos = await catModel.findByClan(id);
-    const pergaminos = await clanPergaminoModel.findPergaminosByClan(id);
+    try {
+      const { id } = req.params;
+      const clan = await clanModel.findById(id);
+      const gatos = await catModel.findByClan(id);
+      const pergaminos = await clanPergaminoModel.findPergaminosByClan(id);
 
-    if (!clan) {
-      return res.status(404).render('error', { message: 'Clan no encontrado.' });
+      if (!clan) {
+        return res.status(404).render('error', { message: 'Clan no encontrado.' });
+      }
+
+      res.render('clanes/detail', { clan, gatos, pergaminos });
+    } catch (err) {
+      next(err);
     }
-
-    res.render('clanes/detail', { clan, gatos, pergaminos });
-  } catch (err) {
-    next(err);
   }
-}
 };

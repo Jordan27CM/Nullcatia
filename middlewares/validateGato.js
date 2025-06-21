@@ -5,12 +5,12 @@ const validateGato = [
   body('raza').notEmpty().withMessage('La raza es obligatoria'),
   body('fecha_nacimiento').isDate().withMessage('Fecha inválida'),
   body('clan_id').isInt().withMessage('Clan requerido'),
-  
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('gatos/form', {
-        clanes: [], // o trae los clanes otra vez
+        clanes: [],
         errors: errors.array(),
         gato: req.body
       });

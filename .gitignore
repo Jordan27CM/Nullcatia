@@ -1,7 +1,7 @@
-# ⚙️ Node.js
+# Node.js
 node_modules/
 .env
-# 💾 Archivos temporales del sistema o editor
+# Archivos temporales del sistema o editor
 .DS_Store
 *.log
 *.sqlite

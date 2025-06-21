@@ -10,17 +10,17 @@ module.exports = {
     }
   },
   create: async (req, res, next) => {
-  try {
-    const { nombre, descripcion } = req.body;
-    await territorioModel.create({ nombre, descripcion });
-    res.redirect('/territorios');
-  } catch (err) {
-    next(err);
+    try {
+      const { nombre, descripcion } = req.body;
+      await territorioModel.create({ nombre, descripcion });
+      res.redirect('/territorios');
+    } catch (err) {
+      next(err);
+    }
+  },
+  showForm: (req, res) => {
+    res.render('territorios/form');
   }
-},
-showForm: (req, res) => {
-  res.render('territorios/form');
-}
 
 
 };
