@@ -48,21 +48,8 @@ method-override
 express-validator
 
 ### 3. Configurar el entorno .env
-Copia el archivo de ejemplo y edítalo con tus datos locales de MySQL:
-
+Modifica el nombre del archivo .env.example por .env para configurar la conexion
 cp .env.example .env
-
-Edita el .env:
-
-DB_HOST=localhost
-
-DB_USER=root
-
-DB_PASSWORD=tu_contraseña
-
-DB_NAME=nullcatia_db
-
-DB_PORT=3306
 
 ### 4. Crear la base de datos
 Desde tu cliente de MySQL o herramienta como Workbench:
