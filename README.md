@@ -55,9 +55,13 @@ cp .env.example .env
 Edita el .env:
 
 DB_HOST=localhost
+
 DB_USER=root
+
 DB_PASSWORD=tu_contraseña
+
 DB_NAME=nullcatia_db
+
 DB_PORT=3306
 
 ### 4. Crear la base de datos
