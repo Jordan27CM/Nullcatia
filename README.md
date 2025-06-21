@@ -96,12 +96,7 @@ Estructura modular y desacoplada
 
 ###📜 Documentación de la API (Swagger)**
 
-
-**⚠️ Si activas Swagger, asegúrate de instalar:**
-
-npm install swagger-jsdoc swagger-ui-express
-
-Luego accede a:
+toda la documentacion de las rutas se encuentra en este link
 http://localhost:3000/api-docs
 
 **📹 Video demostrativo**
