@@ -1,22 +1,49 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h1>🐾 Detalles de <%= gato.nombre %></h1>
+<div class="container my-5" style="max-width: 700px; font-family: Georgia, serif;">
+  <div class="card" style="background-color: #2e2a1f; border: 3px solid #d9c978; box-shadow: 0 0 12px #d9c978;">
+    <div class="card-body text-light">
 
-<ul>
-  <li><strong>Raza:</strong> <%= gato.raza %></li>
-  <li><strong>Edad:</strong> <%= gato.edad %> años</li>
-  <li><strong>Fecha de Nacimiento:</strong> 
-    <%= gato.fecha_nacimiento 
-      ? new Date(gato.fecha_nacimiento).toLocaleDateString('es-ES') 
-      : 'Desconocida' %>
-  </li>
-  <li><strong>Clan:</strong> 
-    <a href="/clanes/<%= gato.clan_id %>"><%= gato.clan_nombre %></a>
-  </li>
-</ul>
+      <!-- Título -->
+      <h1 class="card-title display-5 text-center mb-4" style="color: #d9c978;">
+        🐾 Detalles de <%= gato.nombre %>
+      </h1>
 
-<a href="/gatos">🔙 Volver a la lista</a> |
-<a href="/gatos/<%= gato.gato_id %>/editar">✏️ Editar</a>
+      <!-- Lista de atributos -->
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+          <strong style="color: #d9c978;">Raza:</strong> <%= gato.raza %>
+        </li>
+        <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+          <strong style="color: #d9c978;">Edad:</strong> <%= gato.edad %> años
+        </li>
+        <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+          <strong style="color: #d9c978;">Fecha de Nacimiento:</strong>
+          <%= gato.fecha_nacimiento 
+            ? new Date(gato.fecha_nacimiento).toLocaleDateString('es-ES') 
+            : 'Desconocida' %>
+        </li>
+        <li class="list-group-item bg-transparent text-light border-bottom" style="border-color: #d9c978;">
+          <strong style="color: #d9c978;">Clan:</strong>
+          <a href="/clanes/<%= gato.clan_id %>" class="text-decoration-none text-warning">
+            <%= gato.clan_nombre %>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botones -->
+      <div class="text-center mt-4 d-flex justify-content-between">
+        <a href="/gatos" class="btn btn-outline-warning px-4">
+          🔙 Volver a la lista
+        </a>
+        <a href="/gatos/<%= gato.gato_id %>/editar" class="btn btn-outline-primary px-4">
+          ✏️ Editar
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

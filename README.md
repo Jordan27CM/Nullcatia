@@ -105,6 +105,8 @@ http://localhost:3000/api-docs
 
 **📹 Video demostrativo**
 
+https://youtu.be/ANhEpP4Cl6k
+
 **🔐 Buenas prácticas**
 
 .env.example compartido, no credenciales reales
@@ -118,6 +120,9 @@ Modularización de controladores y rutas
 Compatible con estructura MVC
 
 **👥 Autores**
+
 Jordan Murillo
+
 Anibal Tapia
+
 Adrian Ramirez
