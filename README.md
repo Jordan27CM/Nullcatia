@@ -105,6 +105,8 @@ http://localhost:3000/api-docs
 
 **📹 Video demostrativo**
 
+https://youtu.be/ANhEpP4Cl6k
+
 **🔐 Buenas prácticas**
 
 .env.example compartido, no credenciales reales
@@ -119,5 +121,7 @@ Compatible con estructura MVC
 
 **👥 Autores**
 Jordan Murillo
+
 Anibal Tapia
+
 Adrian Ramirez
