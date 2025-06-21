@@ -72,7 +72,8 @@ npm run dev
 
 **🗂️ Estructura del Proyecto**
 
-![image](https://github.com/user-attachments/assets/d460b72b-c100-4802-b78a-a2bc29502be3)
+![image](https://github.com/user-attachments/assets/5724ea8e-fbd5-447d-a3fc-7200b0e11732)
+
 
 **✨ Funcionalidades clave**
 
@@ -95,12 +96,7 @@ Estructura modular y desacoplada
 
 ###📜 Documentación de la API (Swagger)**
 
-
-**⚠️ Si activas Swagger, asegúrate de instalar:**
-
-npm install swagger-jsdoc swagger-ui-express
-
-Luego accede a:
+toda la documentacion de las rutas se encuentra en este link
 http://localhost:3000/api-docs
 
 **📹 Video demostrativo**
