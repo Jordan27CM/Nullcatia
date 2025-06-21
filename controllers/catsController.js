@@ -23,11 +23,11 @@ function calcularEdad(fechaNacimiento) {
 }
 
 module.exports = {
-  list: async (req, res, next) => {
+  listar: async (req, res, next) => {
     try {
       const { nombre, clan_id } = req.query;
 
-      const gatos = await catModel.findWithFilters(nombre, clan_id);
+      const gatos = await catModel.filtro(nombre, clan_id);
 
       // Calcular edad y formatear fecha
       const gatosConEdad = gatos.map(gato => ({
@@ -38,9 +38,9 @@ module.exports = {
           : 'Desconocida'
       }));
 
-      const clanes = await clanModel.findAll();
+      const clanes = await clanModel.buscarTodo();
 
-      res.render('gatos/list', {
+      res.render('gatos/listar', {
         gatos: gatosConEdad,
         clanes,
         filtroNombre: nombre,
@@ -51,16 +51,16 @@ module.exports = {
     }
   },
 
-  showForm: async (req, res, next) => {
+  verFormulario: async (req, res, next) => {
     try {
-      const clanes = await clanModel.findAll();
-      res.render('gatos/form', { clanes });
+      const clanes = await clanModel.buscarTodo();
+      res.render('gatos/nuevo', { clanes });
     } catch (err) {
       next(err);
     }
   },
 
-  create: async (req, res, next) => {
+  crear: async (req, res, next) => {
     try {
       if (!req.body.nombre || !req.body.raza || !req.body.fecha_nacimiento || !req.body.clan_id) {
         throw new Error('Todos los campos son requeridos');
@@ -78,13 +78,13 @@ module.exports = {
         clan_id: req.body.clan_id
       };
 
-      await catModel.create(gatoData);
+      await catModel.crear(gatoData);
 
       res.redirect('/gatos');
     } catch (err) {
       try {
-        const clanes = await clanModel.findAll();
-        res.render('gatos/form', {
+        const clanes = await clanModel.buscarTodo();
+        res.render('gatos/nuevo', {
           clanes,
           error: err.message,
           formData: req.body
@@ -95,10 +95,10 @@ module.exports = {
     }
   },
 
-  editForm: async (req, res, next) => {
+  formularioEditar: async (req, res, next) => {
     try {
-      const gato = await catModel.findById(req.params.id);
-      const clanes = await clanModel.findAll();
+      const gato = await catModel.buscarId(req.params.id);
+      const clanes = await clanModel.buscarTodo();
 
       const gatoConEdad = {
         ...gato,
@@ -107,13 +107,13 @@ module.exports = {
           : ''
       };
 
-      res.render('gatos/edit', { gato: gatoConEdad, clanes });
+      res.render('gatos/editar', { gato: gatoConEdad, clanes });
     } catch (err) {
       next(err);
     }
   },
 
-  update: async (req, res, next) => {
+  actualizar: async (req, res, next) => {
     try {
       if (req.body.fecha_nacimiento) {
         const fecha = new Date(req.body.fecha_nacimiento);
@@ -122,25 +122,25 @@ module.exports = {
         }
       }
 
-      await catModel.update(req.params.id, req.body);
+      await catModel.actualizar(req.params.id, req.body);
       res.redirect('/gatos');
     } catch (err) {
       next(err);
     }
   },
 
-  remove: async (req, res, next) => {
+  eliminar: async (req, res, next) => {
     try {
-      await catModel.delete(req.params.id);
+      await catModel.eliminar(req.params.id);
       res.redirect('/gatos');
     } catch (err) {
       next(err);
     }
   },
-  detail: async (req, res, next) => {
+  detalles: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const gato = await catModel.findByIdWithClan(id);
+      const gato = await catModel.buscarPorIdConClan(id);
 
       if (!gato) {
         return res.status(404).render('error', { message: 'Gato no encontrado' });
@@ -156,7 +156,7 @@ module.exports = {
         edad--;
       }
 
-      res.render('gatos/detail', {
+      res.render('gatos/detalles', {
         gato: {
           ...gato,
           edad

@@ -4,60 +4,60 @@ const territorioModel = require('../models/territorioModel');
 const clanPergaminoModel = require('../models/clanPergaminoModel');
 
 module.exports = {
-  list: async (req, res, next) => {
+  listar: async (req, res, next) => {
     try {
-      const clanes = await clanModel.findAll();
-      res.render('clanes/list', { clanes });
+      const clanes = await clanModel.buscarTodo();
+      res.render('clanes/listar', { clanes });
     } catch (err) {
       next(err);
     }
   },
 
-  showForm: async (req, res, next) => {
+  verFormulario: async (req, res, next) => {
     try {
-      const territorios = await territorioModel.findAll();
-      res.render('clanes/form', { territorios });
+      const territorios = await territorioModel.buscarTodo();
+      res.render('clanes/nuevo', { territorios });
     } catch (err) {
       next(err);
     }
   },
 
-  create: async (req, res, next) => {
+  crear: async (req, res, next) => {
     try {
-      await clanModel.create(req.body);
+      await clanModel.crear(req.body);
       res.redirect('/clanes');
     } catch (err) {
       next(err);
     }
   },
 
-  editForm: async (req, res, next) => {
+  formularioEditar: async (req, res, next) => {
     try {
-      const clan = await clanModel.findById(req.params.id);
-      const territorios = await territorioModel.findAll();
-      res.render('clanes/edit', { clan, territorios });
+      const clan = await clanModel.buscarId(req.params.id);
+      const territorios = await territorioModel.buscarTodo();
+      res.render('clanes/editar', { clan, territorios });
     } catch (err) {
       next(err);
     }
   },
 
-  update: async (req, res, next) => {
+  actualizar: async (req, res, next) => {
     try {
-      await clanModel.update(req.params.id, req.body);
+      await clanModel.actualizar(req.params.id, req.body);
       res.redirect('/clanes');
     } catch (err) {
       next(err);
     }
   },
 
-  remove: async (req, res, next) => {
+  eliminar: async (req, res, next) => {
     try {
-      const gatosEnClan = await catModel.countByClan(req.params.id);
+      const gatosEnClan = await catModel.contarPorClan(req.params.id);
 
       if (gatosEnClan > 0) {
         return res.redirect('/clanes/error');
       } else {
-        await clanModel.delete(req.params.id);
+        await clanModel.eliminar(req.params.id);
         res.redirect('/clanes');
       }
     } catch (err) {
@@ -68,18 +68,18 @@ module.exports = {
   error: (req, res) => {
     res.render('clanes/error');
   },
-  show: async (req, res, next) => {
+  ver: async (req, res, next) => {
     try {
       const { id } = req.params;
-      const clan = await clanModel.findById(id);
-      const gatos = await catModel.findByClan(id);
-      const pergaminos = await clanPergaminoModel.findPergaminosByClan(id);
+      const clan = await clanModel.buscarId(id);
+      const gatos = await catModel.buscarPorClan(id);
+      const pergaminos = await clanPergaminoModel.buscarPergaminoPorClan(id);
 
       if (!clan) {
         return res.status(404).render('error', { message: 'Clan no encontrado.' });
       }
 
-      res.render('clanes/detail', { clan, gatos, pergaminos });
+      res.render('clanes/detalles', { clan, gatos, pergaminos });
     } catch (err) {
       next(err);
     }

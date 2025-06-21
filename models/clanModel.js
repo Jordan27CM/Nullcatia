@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 module.exports = {
-  findAll: async () => {
+  buscarTodo: async () => {
     const [rows] = await pool.query(`
     SELECT 
       c.*, 
@@ -11,7 +11,7 @@ module.exports = {
   `);
     return rows;
   },
-  findById: async (id) => {
+  buscarId: async (id) => {
     const [rows] = await pool.query(`
     SELECT c.*, t.nombre AS territorio
     FROM clanes c
@@ -20,16 +20,16 @@ module.exports = {
   `, [id]);
     return rows[0];
   },
-  create: async (clanData) => {
+  crear: async (clanData) => {
     const [result] = await pool.query(
       'INSERT INTO clanes (nombre, territorio_id, descripcion) VALUES (?, ?, ?)', [clanData.nombre, clanData.territorio_id, clanData.descripcion]);
     return result.insertId;
   },
-  update: async (id, clan) => {
+  actualizar: async (id, clan) => {
     const { nombre, descripcion, territorio_id } = clan;
     await pool.query('UPDATE clanes SET nombre = ?, descripcion = ?, territorio_id = ? WHERE clan_id = ?', [nombre, descripcion, territorio_id, id]);
   },
-  delete: async (id) => {
+  eliminar: async (id) => {
     const [result] = await pool.query('DELETE FROM clanes WHERE clan_id = ?', [id]);
     return result.affectedRows;
   }

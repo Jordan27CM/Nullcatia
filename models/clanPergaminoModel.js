@@ -10,7 +10,7 @@ module.exports = {
   unlink: async (id) => {
     await pool.query('DELETE FROM clan_pergamino WHERE id = ?', [id]);
   },
-  findAll: async () => {
+  buscarTodo: async () => {
     const [rows] = await pool.query(`
     SELECT cp.id, cp.agregado_en, c.nombre AS clan, p.titulo AS pergamino
     FROM clan_pergamino cp
@@ -19,7 +19,8 @@ module.exports = {
     ORDER BY c.nombre, p.titulo
   `);
     return rows;
-  }, findPergaminosByClan: async (clan_id) => {
+  }, 
+  buscarPergaminoPorClan: async (clan_id) => {
     const [rows] = await pool.query(`
     SELECT p.titulo
     FROM clan_pergamino cp

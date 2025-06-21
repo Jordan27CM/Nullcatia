@@ -18,7 +18,7 @@ const clansController = require('../controllers/clansController');
  *       200:
  *         description: Lista de clanes
  */
-router.get('/', clansController.list);
+router.get('/', clansController.listar);
 
 /**
  * @swagger
@@ -30,7 +30,7 @@ router.get('/', clansController.list);
  *       200:
  *         description: Formulario de creación de clan
  */
-router.get('/nuevo', clansController.showForm);
+router.get('/nuevo', clansController.verFormulario);
 
 /**
  * @swagger
@@ -58,7 +58,7 @@ router.get('/nuevo', clansController.showForm);
  *       201:
  *         description: Clan creado exitosamente
  */
-router.post('/', clansController.create);
+router.post('/', clansController.crear);
 
 /**
  * @swagger
@@ -79,7 +79,7 @@ router.post('/', clansController.create);
  *       404:
  *         description: Clan no encontrado
  */
-router.get('/:id/editar', clansController.editForm);
+router.get('/:id/editar', clansController.formularioEditar);
 
 /**
  * @swagger
@@ -113,7 +113,7 @@ router.get('/:id/editar', clansController.editForm);
  *       404:
  *         description: Clan no encontrado
  */
-router.put('/:id', clansController.update);
+router.put('/:id', clansController.actualizar);
 
 /**
  * @swagger
@@ -134,10 +134,10 @@ router.put('/:id', clansController.update);
  *       404:
  *         description: Clan no encontrado
  */
-router.delete('/:id', clansController.remove);
+router.delete('/:id', clansController.eliminar);
 
 
-router.get('/:id', clansController.show);
+router.get('/:id', clansController.ver);
 /**
  * @swagger
  * /clanes/{id}:

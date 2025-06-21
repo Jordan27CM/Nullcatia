@@ -3,20 +3,20 @@ const clanModel = require('../models/clanModel');
 const pergaminoModel = require('../models/pergaminoModel');
 
 module.exports = {
-  list: async (req, res, next) => {
+  listar: async (req, res, next) => {
     try {
-      const relaciones = await clanPergaminoModel.findAll();
-      res.render('clanPergaminos/list', { relaciones });
+      const relaciones = await clanPergaminoModel.buscarTodo();
+      res.render('clanPergaminos/listar', { relaciones });
     } catch (err) {
       next(err);
     }
   },
 
-  showForm: async (req, res, next) => {
+  verFormulario: async (req, res, next) => {
     try {
-      const clanes = await clanModel.findAll();
-      const pergaminos = await pergaminoModel.findAll();
-      res.render('clanPergaminos/form', { clanes, pergaminos });
+      const clanes = await clanModel.buscarTodo();
+      const pergaminos = await pergaminoModel.buscarTodo();
+      res.render('clanPergaminos/nuevo', { clanes, pergaminos });
     } catch (err) {
       next(err);
     }

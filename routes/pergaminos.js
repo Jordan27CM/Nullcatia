@@ -19,7 +19,7 @@ const pergaminosController = require('../controllers/pergaminosControllers');
  *       200:
  *         description: Lista de pergaminos disponibles
  */
-router.get('/', pergaminosController.list);
+router.get('/', pergaminosController.listar);
 
 /**
  * @swagger
@@ -31,7 +31,7 @@ router.get('/', pergaminosController.list);
  *       200:
  *         description: Formulario de nuevo pergamino
  */
-router.get('/nuevo', pergaminosController.showForm);
+router.get('/nuevo', pergaminosController.verFormulario);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.get('/nuevo', pergaminosController.showForm);
  *       201:
  *         description: Pergamino creado correctamente
  */
-router.post('/', pergaminosController.create);
+router.post('/', pergaminosController.crear);
 
 /**
  * @swagger
@@ -78,6 +78,6 @@ router.post('/', pergaminosController.create);
  *       404:
  *         description: Pergamino no encontrado
  */
-router.delete('/:id', pergaminosController.remove);
+router.delete('/:id', pergaminosController.eliminar);
 
 module.exports = router;

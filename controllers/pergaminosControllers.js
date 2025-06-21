@@ -1,31 +1,31 @@
 const pergaminoModel = require('../models/pergaminoModel');
 
 module.exports = {
-  list: async (req, res, next) => {
+  listar: async (req, res, next) => {
     try {
-      const pergaminos = await pergaminoModel.findAll();
-      res.render('pergaminos/list', { pergaminos });
+      const pergaminos = await pergaminoModel.buscarTodo();
+      res.render('pergaminos/listar', { pergaminos });
     } catch (err) {
       next(err);
     }
   },
 
-  showForm: (req, res) => {
-    res.render('pergaminos/form');
+  verFormulario: (req, res) => {
+    res.render('pergaminos/nuevo'); 
   },
 
-  create: async (req, res, next) => {
+  crear: async (req, res, next) => {
     try {
-      await pergaminoModel.create(req.body);
+      await pergaminoModel.crear(req.body);
       res.redirect('/pergaminos');
     } catch (err) {
       next(err);
     }
   },
 
-  remove: async (req, res, next) => {
+  eliminar: async (req, res, next) => {
     try {
-      await pergaminoModel.delete(req.params.id);
+      await pergaminoModel.eliminar(req.params.id);
       res.redirect('/pergaminos');
     } catch (err) {
       next(err);

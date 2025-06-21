@@ -18,7 +18,7 @@ const validateGato = require('../middlewares/validateGato');
  *       200:
  *         description: Lista de gatos
  */
-router.get('/', catsController.list);
+router.get('/', catsController.listar);
 /**
  * @swagger
  * /gatos/nuevo:
@@ -29,7 +29,7 @@ router.get('/', catsController.list);
  *       200:
  *         description: Formulario de nuevo gato
  */
-router.get('/nuevo', catsController.showForm);
+router.get('/nuevo', catsController.verFormulario);
 /**
  * @swagger
  * /gatos:
@@ -61,7 +61,7 @@ router.get('/nuevo', catsController.showForm);
  *       201:
  *         description: Gato creado correctamente
  */
-router.post('/', validateGato, catsController.create);
+router.post('/', validateGato, catsController.crear);
 /**
  * @swagger
  * /gatos/{id}/editar:
@@ -81,7 +81,7 @@ router.post('/', validateGato, catsController.create);
  *       404:
  *         description: Gato no encontrado
  */
-router.get('/:id/editar', catsController.editForm);
+router.get('/:id/editar', catsController.formularioEditar);
 /**
  * @swagger
  * /gatos/{id}:
@@ -117,7 +117,7 @@ router.get('/:id/editar', catsController.editForm);
  *       404:
  *         description: Gato no encontrado
  */
-router.put('/:id', catsController.update);
+router.put('/:id', catsController.actualizar);
 /**
  * @swagger
  * /gatos/{id}:
@@ -137,7 +137,7 @@ router.put('/:id', catsController.update);
  *       404:
  *         description: Gato no encontrado
  */
-router.delete('/:id', catsController.remove);
+router.delete('/:id', catsController.eliminar);
 /**
  * @swagger
  * /gatos/{id}:
@@ -157,6 +157,6 @@ router.delete('/:id', catsController.remove);
  *       404:
  *         description: Gato no encontrado
  */
-router.get('/:id', catsController.detail);
+router.get('/:id', catsController.detalles);
 
 module.exports = router;

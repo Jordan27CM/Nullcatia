@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 module.exports = {
-  findAll: async () => {
+  buscarTodo: async () => {
     const [rows] = await pool.query(`
       SELECT g.*, c.nombre AS clan
       FROM gatos g
@@ -9,23 +9,23 @@ module.exports = {
     `);
     return rows;
   },
-  findById: async (id) => {
+  buscarId: async (id) => {
     const [rows] = await pool.query('SELECT * FROM gatos WHERE gato_id = ?', [id]);
     return rows[0];
   },
-  create: async (gato) => {
+  crear: async (gato) => {
     const { nombre, raza, fecha_nacimiento, clan_id } = gato;
     await pool.query('INSERT INTO gatos (nombre, raza, fecha_nacimiento, clan_id) VALUES (?, ?, ?, ?)', [nombre, raza, fecha_nacimiento, clan_id]);
   },
-  update: async (id, gato) => {
+  actualizar: async (id, gato) => {
     const { nombre, raza, fecha_nacimiento, clan_id } = gato;
     await pool.query('UPDATE gatos SET nombre = ?, raza = ?, fecha_nacimiento = ?, clan_id = ? WHERE gato_id = ?', [nombre, raza, fecha_nacimiento, clan_id, id]);
   },
-  delete: async (id) => {
+  eliminar: async (id) => {
     await pool.query('DELETE FROM gatos WHERE gato_id = ?', [id]);
   },
 
-  findAllWithClanName: async () => {
+  buscarTodoPorClan: async () => {
     const [rows] = await pool.query(`
       SELECT g.*, c.nombre AS clan_nombre 
       FROM gatos g
@@ -33,14 +33,14 @@ module.exports = {
     `);
     return rows;
   },
-  countByClan: async (clanId) => {
+  contarPorClan: async (clanId) => {
     const [rows] = await pool.query(
       'SELECT COUNT(*) AS count FROM gatos WHERE clan_id = ?',
       [clanId]
     );
     return rows[0].count;
   },
-  findWithFilters: async (nombre, clan_id) => {
+  filtro: async (nombre, clan_id) => {
     let query = `
     SELECT g.*, c.nombre AS clan_nombre,
            TIMESTAMPDIFF(YEAR, g.fecha_nacimiento, CURDATE()) AS edad,
@@ -66,7 +66,7 @@ module.exports = {
     const [rows] = await pool.query(query, params);
     return rows;
   },
-  findByClan: async (clan_id) => {
+  buscarPorClan: async (clan_id) => {
     const [rows] = await pool.query(`
     SELECT *, TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
     FROM gatos
@@ -74,7 +74,7 @@ module.exports = {
   `, [clan_id]);
     return rows;
   },
-  findByIdWithClan: async (id) => {
+  buscarPorIdConClan: async (id) => {
     const [rows] = await pool.query(`
     SELECT g.*, c.nombre AS clan_nombre
     FROM gatos g

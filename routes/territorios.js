@@ -19,7 +19,7 @@ const territoriosController = require('../controllers/territoriosController');
  *       200:
  *         description: Formulario para nuevo territorio
  */
-router.get('/nuevo', territoriosController.showForm);
+router.get('/nuevo', territoriosController.verFormulario);
 
 /**
  * @swagger
@@ -31,7 +31,7 @@ router.get('/nuevo', territoriosController.showForm);
  *       200:
  *         description: Lista de territorios
  */
-router.get('/', territoriosController.list);
+router.get('/', territoriosController.listar);
 /**
  * @swagger
  * /territorios:
@@ -55,7 +55,7 @@ router.get('/', territoriosController.list);
  *       201:
  *         description: Territorio creado correctamente
  */
-router.post('/', territoriosController.create);
+router.post('/', territoriosController.crear);
 
 
 module.exports = router;
