@@ -2,6 +2,7 @@ const clanModel = require('../models/clanModel');
 const catModel = require('../models/catModel');
 const territorioModel = require('../models/territorioModel');
 const clanPergaminoModel = require('../models/clanPergaminoModel');
+const puppeteer = require('puppeteer');
 
 module.exports = {
   listar: async (req, res, next) => {
@@ -83,5 +84,29 @@ module.exports = {
     } catch (err) {
       next(err);
     }
+  },
+  exportPDF: async (req, res, next) => {
+  try {
+    const clanes = await clanModel.buscarTodo();
+
+    const html = await new Promise((resolve, reject) => {
+      req.app.render('clanes/pdf', { clanes }, (err, rendered) => {
+        if (err) return reject(err);
+        resolve(rendered);
+      });
+    });
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(html);
+    const pdf = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=clanes.pdf');
+    res.send(pdf);
+  } catch (err) {
+    next(err);
   }
+}
 };

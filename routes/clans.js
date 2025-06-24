@@ -158,6 +158,7 @@ router.get('/:id', clansController.ver);
  *         description: Clan no encontrado
  */
 router.get('/error', clansController.error);
+router.get('/exportar/pdf', clansController.exportPDF);
 
 
 
