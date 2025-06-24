@@ -1,5 +1,6 @@
 const catModel = require('../models/catModel');
 const clanModel = require('../models/clanModel');
+const puppeteer = require('puppeteer');
 
 function calcularEdad(fechaNacimiento) {
   if (!fechaNacimiento) return 'Edad desconocida';
@@ -165,5 +166,45 @@ module.exports = {
     } catch (err) {
       next(err);
     }
+  },
+
+generarPDF: async (req, res, next) => {
+  try {
+    const gatos = await catModel.buscarTodoPorClan();
+
+    if (!Array.isArray(gatos)) {
+      throw new Error('La consulta de gatos no retornó un array válido');
+    }
+
+    const gatosConEdad = gatos.map(gato => ({
+      ...gato,
+      edad: calcularEdad(gato.fecha_nacimiento),
+      fechaFormateada: gato.fecha_nacimiento 
+        ? new Date(gato.fecha_nacimiento).toLocaleDateString('es-ES') 
+        : 'Desconocida'
+    }));
+
+    const html = await new Promise((resolve, reject) => {
+      req.app.render('gatos/pdf', { gatos: gatosConEdad }, (err, html) => {
+        if (err) reject(err);
+        else resolve(html);
+      });
+    });
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(html);
+
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=gatos.pdf');
+    res.send(pdfBuffer);
+
+  } catch (err) {
+    next(err);
   }
+}
+
 };

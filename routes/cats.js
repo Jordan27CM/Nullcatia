@@ -158,5 +158,6 @@ router.delete('/:id', catsController.eliminar);
  *         description: Gato no encontrado
  */
 router.get('/:id', catsController.detalles);
+router.get('/exportar/pdf', catsController.generarPDF);
 
 module.exports = router;
