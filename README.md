@@ -33,19 +33,7 @@ cd Nullcatia
 
 npm install
 
-Esto instalará paquetes como:
-
-express
-
-ejs
-
-mysql2
-
-dotenv
-
-method-override
-
-express-validator
+Esto instalara todos los paquetes necesarios para la ejecucuion
 
 ### 3. Configurar el entorno .env
 Modifica el nombre del archivo .env.example por .env para configurar la conexion
