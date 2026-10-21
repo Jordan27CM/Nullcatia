@@ -7,6 +7,14 @@
 
       <h1 class="display-5 mb-4 text-center" style="color: #d9c978;">🌍 Lista de Territorios</h1>
 
+      <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+        <div class="mb-4 text-end">
+          <a href="/territorios/nuevo" class="btn btn-outline-warning fw-bold" style="letter-spacing: 1px;">
+            ➕ Crear nuevo territorio
+          </a>
+        </div>
+      <% } %>
+
       <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle text-light" style="border-color: #d9c978;">
           <thead class="text-center" style="background-color: #3b3721; color: #d9c978;">

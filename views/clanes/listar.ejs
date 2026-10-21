@@ -26,12 +26,14 @@
               <td><%= clan.territorio %></td>
               <td>
                 <a href="/clanes/<%= clan.clan_id %>" class="btn btn-sm btn-outline-warning me-1" style="letter-spacing: 1px;">🔍 Ver</a>
-                <a href="/clanes/<%= clan.clan_id %>/editar" class="btn btn-sm btn-outline-warning me-1" style="letter-spacing: 1px;">✏️ Editar</a>
-                <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST" style="display:inline;">
-                  <button type="submit" class="btn btn-sm btn-outline-danger" style="letter-spacing: 1px;">
-                    🗑️ Eliminar
-                  </button>
-                </form>
+                <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                  <a href="/clanes/<%= clan.clan_id %>/editar" class="btn btn-sm btn-outline-warning me-1" style="letter-spacing: 1px;">✏️ Editar</a>
+                  <form action="/clanes/<%= clan.clan_id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('¿Seguro que quieres eliminar este clan?');">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" style="letter-spacing: 1px;">
+                      🗑️ Eliminar
+                    </button>
+                  </form>
+                <% } %>
               </td>
             </tr>
           <% }) %>

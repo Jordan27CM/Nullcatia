@@ -9,7 +9,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMedieval">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         <li class="nav-item">
           <a class="nav-link" href="/" style="color: #d9c978; font-weight: 600;">🏰 Inicio</a>
         </li>
@@ -20,11 +20,52 @@
           <a class="nav-link" href="/clanes" style="color: #d9c978; font-weight: 600;">🛡️ Clanes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/gatos/nuevo" style="color: #eae1b4; font-weight: 600;">➕ Nuevo Gatito</a>
+          <a class="nav-link" href="/pergaminos" style="color: #d9c978; font-weight: 600;">📜 Pergaminos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/clanes/nuevo" style="color: #eae1b4; font-weight: 600;">➕ Nuevo Clan</a>
+          <a class="nav-link" href="/territorios" style="color: #d9c978; font-weight: 600;">🗺️ Territorios</a>
         </li>
+
+        <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-sm btn-outline-warning text-wrap text-start" href="/gatos/nuevo" style="font-weight: 600;">➕ Gatito</a>
+          </li>
+          <li class="nav-item ms-lg-1">
+            <a class="btn btn-sm btn-outline-warning text-wrap text-start" href="/clanes/nuevo" style="font-weight: 600;">➕ Clan</a>
+          </li>
+        <% } %>
+
+        <% if (typeof user !== 'undefined' && user) { %>
+          <li class="nav-item ms-lg-3 dropdown">
+            <a class="nav-link dropdown-toggle badge fs-6 px-3 py-2 text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #d9c978; border-radius: 20px;">
+              <% if (user.rol === 'admin') { %>
+                🛡️ Admin: <%= user.nombre_usuario %>
+              <% } else { %>
+                👤 Usuario: <%= user.nombre_usuario %>
+              <% } %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-warning" aria-labelledby="userDropdown">
+              <li>
+                <span class="dropdown-item-text text-muted small">
+                  Rol: <strong><%= user.rol === 'admin' ? 'Administrador' : 'Usuario Lector' %></strong>
+                </span>
+              </li>
+              <li><hr class="dropdown-divider bg-warning"></li>
+              <li>
+                <a class="dropdown-item text-danger fw-bold" href="/auth/logout">
+                  🚪 Cerrar Sesión
+                </a>
+              </li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-sm btn-warning text-dark fw-bold me-1" href="/auth/login">🔑 Entrar</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-light fw-bold" href="/auth/registro">✍️ Registrarse</a>
+          </li>
+        <% } %>
       </ul>
     </div>
   </div>

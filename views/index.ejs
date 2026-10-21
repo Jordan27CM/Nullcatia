@@ -1,31 +1,126 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<main class="container my-5">
-  <div class="card bg-light border-warning shadow-lg" style="background-image: url('https://www.transparenttextures.com/patterns/paper.png'); background-color: #f8f5e4;">
-    <div class="card-body text-center">
-      <h1 class="display-5 fw-bold text-brown" style="font-family: 'Times New Roman', serif;">
-        🐱 Bienvenido al Reino de NULLCATIA
+<main class="container my-5" style="max-width: 900px; font-family: 'Cinzel', serif;">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="background-color: #2b261f; color: #eae1b4; border: 2px solid #d9c978 !important;">
+    <div class="card-body text-center p-5">
+      <h1 class="display-5 fw-bold mb-3" style="color: #d9c978;">
+        🐱 Reino de NULLCATIA 🏰
       </h1>
-      <p class="lead mb-4">Explora los clanes, conoce a los gatos inicializados, descifra los antiguos pergaminos y domina el laberinto de enrutamiento RESTful.</p>
+      <p class="lead mb-4" style="color: #eae1b4; font-family: Georgia, serif;">
+        Explora los clanes felinos, consulta los pergaminos sagrados del código y administra los territorios del reino.
+      </p>
 
-      <h2 class="h4 mb-3">📚 Secciones del Reino</h2>
-      <div class="d-grid gap-2 col-10 col-md-6 mx-auto">
+      <!-- Banner de Estado de Autenticación -->
+      <div class="card mb-4 border-warning p-3 text-start" style="background-color: #1c1814;">
+        <% if (typeof user !== 'undefined' && user) { %>
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+              <h5 class="mb-1" style="color: #d9c978;">
+                <% if (user.rol === 'admin') { %>
+                  🛡️ Bienvenido, Administrador <strong><%= user.nombre_usuario %></strong>
+                <% } else { %>
+                  👤 Bienvenido, Usuario Lector <strong><%= user.nombre_usuario %></strong>
+                <% } %>
+              </h5>
+              <p class="mb-0 text-muted small" style="font-family: Georgia, serif;">
+                <% if (user.rol === 'admin') { %>
+                  Tienes permisos completos para <strong>agregar, modificar y eliminar</strong> datos en la base de datos.
+                <% } else { %>
+                  Tienes permisos de <strong>solo lectura</strong> para explorar pergaminos, clanes, gatos y territorios.
+                <% } %>
+              </p>
+            </div>
+            <a href="/auth/logout" class="btn btn-outline-danger btn-sm">Cerrar Sesión</a>
+          </div>
+        <% } else { %>
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+              <h5 class="mb-1" style="color: #d9c978;">🔐 Acceso al Sistema</h5>
+              <p class="mb-0 text-muted small" style="font-family: Georgia, serif;">
+                Inicia sesión como <strong>Administrador</strong> (crear/editar/eliminar) o como <strong>Usuario</strong> (solo lectura).
+              </p>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="/auth/login" class="btn btn-warning btn-sm text-dark fw-bold">🔑 Iniciar Sesión</a>
+              <a href="/auth/registro" class="btn btn-outline-light btn-sm fw-bold">✍️ Registrarse</a>
+            </div>
+          </div>
+        <% } %>
+      </div>
 
-        <a href="/gatos" class="btn btn-outline-secondary">🐾 Ver Gatos</a>
-        <a href="/gatos/nuevo" class="btn btn-outline-secondary">➕ Agregar Gatito</a>
+      <h2 class="h4 mb-4 fw-bold" style="color: #d9c978;">📚 Secciones Principales</h2>
 
-        <a href="/clanes" class="btn btn-outline-secondary">🛡️ Ver Clanes</a>
-        <a href="/clanes/nuevo" class="btn btn-outline-secondary">➕ Crear Clan</a>
+      <div class="row g-3 justify-content-center" style="font-family: Georgia, serif;">
+        <!-- Gatos -->
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border rounded-3 text-center" style="border-color: #d9c978 !important; background-color: #1c1814;">
+            <div class="fs-2 mb-2">🐾</div>
+            <h5 style="color: #d9c978;">Gatitos</h5>
+            <div class="d-grid gap-2 mt-3">
+              <a href="/gatos" class="btn btn-sm btn-outline-warning">🔍 Ver Gatitos</a>
+              <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <a href="/gatos/nuevo" class="btn btn-sm btn-warning text-dark fw-bold">➕ Agregar Gatito</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
 
-        <a href="/pergaminos" class="btn btn-outline-secondary">📜 Ver Pergaminos</a>
-        <a href="/pergaminos/nuevo" class="btn btn-outline-secondary">➕ Agregar Pergamino</a>
+        <!-- Clanes -->
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border rounded-3 text-center" style="border-color: #d9c978 !important; background-color: #1c1814;">
+            <div class="fs-2 mb-2">🛡️</div>
+            <h5 style="color: #d9c978;">Clanes</h5>
+            <div class="d-grid gap-2 mt-3">
+              <a href="/clanes" class="btn btn-sm btn-outline-warning">🔍 Ver Clanes</a>
+              <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <a href="/clanes/nuevo" class="btn btn-sm btn-warning text-dark fw-bold">➕ Crear Clan</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
 
-        <a href="/territorios" class="btn btn-outline-secondary">🌍 Ver Territorios</a>
-        <a href="/territorios/nuevo" class="btn btn-outline-secondary">➕ Crear Territorio</a>
+        <!-- Pergaminos -->
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border rounded-3 text-center" style="border-color: #d9c978 !important; background-color: #1c1814;">
+            <div class="fs-2 mb-2">📜</div>
+            <h5 style="color: #d9c978;">Pergaminos</h5>
+            <div class="d-grid gap-2 mt-3">
+              <a href="/pergaminos" class="btn btn-sm btn-outline-warning">🔍 Ver Pergaminos</a>
+              <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <a href="/pergaminos/nuevo" class="btn btn-sm btn-warning text-dark fw-bold">➕ Crear Pergamino</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
 
-        <a href="/clanPergamino" class="btn btn-outline-secondary">🔗 Relacionar Clanes y Pergaminos</a>
-        <a href="/clanPergamino/nuevo" class="btn btn-outline-secondary">➕ Nueva Relación Clan–Pergamino</a>
+        <!-- Territorios -->
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border rounded-3 text-center" style="border-color: #d9c978 !important; background-color: #1c1814;">
+            <div class="fs-2 mb-2">🗺️</div>
+            <h5 style="color: #d9c978;">Territorios</h5>
+            <div class="d-grid gap-2 mt-3">
+              <a href="/territorios" class="btn btn-sm btn-outline-warning">🔍 Ver Territorios</a>
+              <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <a href="/territorios/nuevo" class="btn btn-sm btn-warning text-dark fw-bold">➕ Crear Territorio</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Relaciones Clan-Pergamino -->
+        <div class="col-md-6 col-lg-4">
+          <div class="p-3 border rounded-3 text-center" style="border-color: #d9c978 !important; background-color: #1c1814;">
+            <div class="fs-2 mb-2">🔗</div>
+            <h5 style="color: #d9c978;">Pergaminos por Clan</h5>
+            <div class="d-grid gap-2 mt-3">
+              <a href="/clanPergamino" class="btn btn-sm btn-outline-warning">🔍 Ver Relaciones</a>
+              <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <a href="/clanPergamino/nuevo" class="btn btn-sm btn-warning text-dark fw-bold">➕ Vincular Pergamino</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>

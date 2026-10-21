@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const territoriosController = require('../controllers/territoriosController');
+const { requireAdmin } = require('../middlewares/authMiddleware');
 
 /**
  * @swagger
@@ -19,7 +20,7 @@ const territoriosController = require('../controllers/territoriosController');
  *       200:
  *         description: Formulario para nuevo territorio
  */
-router.get('/nuevo', territoriosController.verFormulario);
+router.get('/nuevo', requireAdmin, territoriosController.verFormulario);
 
 /**
  * @swagger
@@ -55,7 +56,7 @@ router.get('/', territoriosController.listar);
  *       201:
  *         description: Territorio creado correctamente
  */
-router.post('/', territoriosController.crear);
+router.post('/', requireAdmin, territoriosController.crear);
 
 
 module.exports = router;

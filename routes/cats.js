@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const catsController = require('../controllers/catsController');
 const validateGato = require('../middlewares/validateGato');
+const { requireAdmin } = require('../middlewares/authMiddleware');
+
 /**
  * @swagger
  * tags:
@@ -29,7 +31,7 @@ router.get('/', catsController.listar);
  *       200:
  *         description: Formulario de nuevo gato
  */
-router.get('/nuevo', catsController.verFormulario);
+router.get('/nuevo', requireAdmin, catsController.verFormulario);
 /**
  * @swagger
  * /gatos:
@@ -61,7 +63,7 @@ router.get('/nuevo', catsController.verFormulario);
  *       201:
  *         description: Gato creado correctamente
  */
-router.post('/', validateGato, catsController.crear);
+router.post('/', requireAdmin, validateGato, catsController.crear);
 /**
  * @swagger
  * /gatos/{id}/editar:
@@ -81,7 +83,7 @@ router.post('/', validateGato, catsController.crear);
  *       404:
  *         description: Gato no encontrado
  */
-router.get('/:id/editar', catsController.formularioEditar);
+router.get('/:id/editar', requireAdmin, catsController.formularioEditar);
 /**
  * @swagger
  * /gatos/{id}:
@@ -117,7 +119,7 @@ router.get('/:id/editar', catsController.formularioEditar);
  *       404:
  *         description: Gato no encontrado
  */
-router.put('/:id', catsController.actualizar);
+router.put('/:id', requireAdmin, catsController.actualizar);
 /**
  * @swagger
  * /gatos/{id}:
@@ -137,7 +139,7 @@ router.put('/:id', catsController.actualizar);
  *       404:
  *         description: Gato no encontrado
  */
-router.delete('/:id', catsController.eliminar);
+router.delete('/:id', requireAdmin, catsController.eliminar);
 /**
  * @swagger
  * /gatos/{id}:

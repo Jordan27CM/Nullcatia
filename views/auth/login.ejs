@@ -1,0 +1,92 @@
+<%- include('../partials/header') %>
+  <%- include('../partials/nav') %>
+
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <div class="card shadow-lg border-0 rounded-4 overflow-hidden"
+            style="background-color: #2b261f; color: #eae1b4; border: 2px solid #d9c978 !important;">
+            <div class="card-header text-center py-4"
+              style="background-color: #1c1814; border-bottom: 2px solid #d9c978;">
+              <h3 class="fw-bold mb-0" style="font-family: 'Cinzel', serif; color: #d9c978;">
+                🔐 Acceso al Reino NULLCATIA
+              </h3>
+              <p class="small text-muted mb-0 mt-1">Selecciona tu perfil o ingresa tus credenciales</p>
+            </div>
+
+            <div class="card-body p-4">
+              <% if (typeof error !=='undefined' && error) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+
+                  <% if (typeof success !=='undefined' && success) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <i class="bi bi-check-circle-fill me-2"></i>
+                      <%= success %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% } %>
+
+                      <!-- Accesos Rápidos para Demostración -->
+                      <div class="mb-4 text-center">
+                        <label class="form-label d-block text-muted small fw-bold text-uppercase"
+                          style="letter-spacing: 1px;">⚡ Acceso Rápido de Prueba</label>
+                        <div class="d-flex gap-2 justify-content-center">
+
+                        </div>
+                      </div>
+
+                      <hr style="border-color: #d9c978;">
+
+                      <form action="/auth/login" method="POST">
+                        <div class="mb-3">
+                          <label for="nombre_usuario" class="form-label fw-semibold" style="color: #d9c978;">
+                            <i class="bi bi-person-fill me-1"></i> Nombre de Usuario
+                          </label>
+                          <input type="text" class="form-control text-light" id="nombre_usuario" name="nombre_usuario"
+                            value="<%= typeof nombre_usuario !== 'undefined' ? nombre_usuario : '' %>" required
+                            style="background-color: #1c1814; border-color: #d9c978;" placeholder="Ingresa tu usuario">
+                        </div>
+
+                        <div class="mb-4">
+                          <label for="password" class="form-label fw-semibold" style="color: #d9c978;">
+                            <i class="bi bi-key-fill me-1"></i> Contraseña
+                          </label>
+                          <input type="password" class="form-control text-light" id="password" name="password" required
+                            style="background-color: #1c1814; border-color: #d9c978;"
+                            placeholder="Ingresa tu contraseña">
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-bold py-2 shadow-sm"
+                          style="background-color: #d9c978; border: none; color: #1c1814;">
+                          <i class="bi bi-box-arrow-in-right me-1"></i> Entrar al Reino
+                        </button>
+                      </form>
+            </div>
+
+            <div class="card-footer text-center py-3" style="background-color: #1c1814; border-top: 1px solid #d9c978;">
+              <span class="text-muted small">¿No tienes cuenta?</span>
+              <a href="/auth/registro" class="fw-bold ms-1" style="color: #d9c978; text-decoration: none;">Regístrate
+                aquí</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function fillAdmin() {
+        document.getElementById('nombre_usuario').value = 'admin';
+        document.getElementById('password').value = 'admin123';
+      }
+      function fillUser() {
+        document.getElementById('nombre_usuario').value = 'usuario';
+        document.getElementById('password').value = 'user123';
+      }
+    </script>
+
+    <%- include('../partials/footer') %>

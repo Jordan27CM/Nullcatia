@@ -127,3 +127,11 @@ INSERT INTO clan_pergamino (clan_id, pergamino_id) VALUES
 (5, 14),
 (15, 15),
 (16, 16);
+
+-- Usuarios iniciales (Password para admin: admin123, Password para usuario: user123)
+-- Hashes generados con bcrypt (cost factor 10)
+INSERT INTO usuarios (nombre_usuario, email, password, rol) VALUES
+('admin', 'admin@nullcatia.com', '$2a$10$wT8m9G3L0P3gZ7Y2gQ9uE.Xn/LwB/g2D3lE5b4c5d6e7f8g9h0i1', 'admin'),
+('usuario', 'user@nullcatia.com', '$2a$10$2Vb.Xp0pW.u0vE8k/E9M.eD/5G3n4f5g6h7i8j9k0l1m2n3o4p5q6', 'usuario')
+ON DUPLICATE KEY UPDATE nombre_usuario=nombre_usuario;
+

@@ -62,20 +62,22 @@
                   </a>
                 </td>
                 <td class="text-center">
-  <a href="/gatos/<%= cat.gato_id %>" class="btn btn-sm btn-outline-primary me-2" title="Ver detalles del gatito" style="letter-spacing: 1px;">
-    🔍 Ver
-  </a>
+                  <a href="/gatos/<%= cat.gato_id %>" class="btn btn-sm btn-outline-primary me-2" title="Ver detalles del gatito" style="letter-spacing: 1px;">
+                    🔍 Ver
+                  </a>
 
-  <a href="/gatos/<%= cat.gato_id %>/editar" class="btn btn-sm btn-outline-warning me-2" title="Editar gatito" style="letter-spacing: 1px;">
-    ✏️ Editar
-  </a>
+                  <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                    <a href="/gatos/<%= cat.gato_id %>/editar" class="btn btn-sm btn-outline-warning me-2" title="Editar gatito" style="letter-spacing: 1px;">
+                      ✏️ Editar
+                    </a>
 
-  <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que quieres eliminar este gatito?');">
-    <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar gatito" style="letter-spacing: 1px;">
-      🗑️ Eliminar
-    </button>
-  </form>
-</td>
+                    <form action="/gatos/<%= cat.gato_id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que quieres eliminar este gatito?');">
+                      <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar gatito" style="letter-spacing: 1px;">
+                        🗑️ Eliminar
+                      </button>
+                    </form>
+                  <% } %>
+                </td>
 
               </tr>
             <% }) %>

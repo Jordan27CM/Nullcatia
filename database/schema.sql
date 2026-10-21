@@ -46,3 +46,14 @@ CREATE TABLE clan_pergamino (
     FOREIGN KEY (clan_id) REFERENCES clanes(clan_id) ON DELETE CASCADE,
     FOREIGN KEY (pergamino_id) REFERENCES pergaminos(pergamino_id) ON DELETE CASCADE
 );
+
+-- Tabla de usuarios
+CREATE TABLE usuarios (
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'usuario') NOT NULL DEFAULT 'usuario',
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+

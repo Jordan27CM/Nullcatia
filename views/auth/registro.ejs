@@ -1,0 +1,111 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="background-color: #2b261f; color: #eae1b4; border: 2px solid #d9c978 !important;">
+        <div class="card-header text-center py-4" style="background-color: #1c1814; border-bottom: 2px solid #d9c978;">
+          <h3 class="fw-bold mb-0" style="font-family: 'Cinzel', serif; color: #d9c978;">
+            ✍️ Registro de Nuevo Habitante
+          </h3>
+          <p class="small text-muted mb-0 mt-1">Crea tu cuenta para ingresar a NULLCATIA</p>
+        </div>
+
+        <div class="card-body p-4">
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i> <%= error %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <% } %>
+
+          <form action="/auth/registro" method="POST">
+            <div class="mb-3">
+              <label for="nombre_usuario" class="form-label fw-semibold" style="color: #d9c978;">
+                <i class="bi bi-person-fill me-1"></i> Nombre de Usuario
+              </label>
+              <input 
+                type="text" 
+                class="form-control text-light" 
+                id="nombre_usuario" 
+                name="nombre_usuario" 
+                value="<%= typeof formData !== 'undefined' && formData.nombre_usuario ? formData.nombre_usuario : '' %>"
+                required
+                style="background-color: #1c1814; border-color: #d9c978;"
+                placeholder="Nombre de usuario"
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold" style="color: #d9c978;">
+                <i class="bi bi-envelope-fill me-1"></i> Correo Electrónico
+              </label>
+              <input 
+                type="email" 
+                class="form-control text-light" 
+                id="email" 
+                name="email" 
+                value="<%= typeof formData !== 'undefined' && formData.email ? formData.email : '' %>"
+                required
+                style="background-color: #1c1814; border-color: #d9c978;"
+                placeholder="correo@ejemplo.com"
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="rol" class="form-label fw-semibold" style="color: #d9c978;">
+                <i class="bi bi-shield-lock-fill me-1"></i> Tipo de Rol / Permisos
+              </label>
+              <select class="form-select text-light" id="rol" name="rol" style="background-color: #1c1814; border-color: #d9c978;">
+                <option value="usuario" selected>👤 Usuario Lector (Ver pergaminos, clanes y gatos)</option>
+                <option value="admin">🛡️ Administrador (Agregar, modificar y eliminar)</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label fw-semibold" style="color: #d9c978;">
+                <i class="bi bi-key-fill me-1"></i> Contraseña
+              </label>
+              <input 
+                type="password" 
+                class="form-control text-light" 
+                id="password" 
+                name="password" 
+                required
+                style="background-color: #1c1814; border-color: #d9c978;"
+                placeholder="Crea una contraseña"
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="confirmPassword" class="form-label fw-semibold" style="color: #d9c978;">
+                <i class="bi bi-shield-check me-1"></i> Confirmar Contraseña
+              </label>
+              <input 
+                type="password" 
+                class="form-control text-light" 
+                id="confirmPassword" 
+                name="confirmPassword" 
+                required
+                style="background-color: #1c1814; border-color: #d9c978;"
+                placeholder="Repite la contraseña"
+              >
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100 fw-bold py-2 shadow-sm" style="background-color: #d9c978; border: none; color: #1c1814;">
+              <i class="bi bi-person-plus-fill me-1"></i> Registrar e Iniciar Sesión
+            </button>
+          </form>
+        </div>
+
+        <div class="card-footer text-center py-3" style="background-color: #1c1814; border-top: 1px solid #d9c978;">
+          <span class="text-muted small">¿Ya tienes cuenta?</span>
+          <a href="/auth/login" class="fw-bold ms-1" style="color: #d9c978; text-decoration: none;">Inicia sesión aquí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pergaminosController = require('../controllers/pergaminosControllers');
+const { requireAdmin } = require('../middlewares/authMiddleware');
 
 /**
  * @swagger
@@ -31,7 +32,7 @@ router.get('/', pergaminosController.listar);
  *       200:
  *         description: Formulario de nuevo pergamino
  */
-router.get('/nuevo', pergaminosController.verFormulario);
+router.get('/nuevo', requireAdmin, pergaminosController.verFormulario);
 
 /**
  * @swagger
@@ -57,7 +58,7 @@ router.get('/nuevo', pergaminosController.verFormulario);
  *       201:
  *         description: Pergamino creado correctamente
  */
-router.post('/', pergaminosController.crear);
+router.post('/', requireAdmin, pergaminosController.crear);
 
 /**
  * @swagger
@@ -78,6 +79,6 @@ router.post('/', pergaminosController.crear);
  *       404:
  *         description: Pergamino no encontrado
  */
-router.delete('/:id', pergaminosController.eliminar);
+router.delete('/:id', requireAdmin, pergaminosController.eliminar);
 
 module.exports = router;
